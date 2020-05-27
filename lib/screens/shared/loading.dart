@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Register extends StatefulWidget {
+class Loading extends StatefulWidget {
   @override
-  _RegisterState createState() => _RegisterState();
+  _LoadingState createState() => _LoadingState();
 }
 
-class _RegisterState extends State<Register> {
+class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Container(

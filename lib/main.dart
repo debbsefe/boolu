@@ -1,39 +1,18 @@
-import 'package:boolu/ui/views/signup_view.dart';
 import 'package:flutter/material.dart';
-import 'package:boolu/services/navigation_service.dart';
-import 'package:boolu/services/dialog_service.dart';
-import 'package:boolu/ui/views/login_view.dart';
-import 'managers/dialog_manager.dart';
-import 'ui/router.dart';
-import 'locator.dart';
+import 'screens/authenticate/onboarding.dart';
 
-void main() {
-  // Register all the models and services before the app starts
-  setupLocator();
-
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Boolu',
-      builder: (context, child) => Navigator(
-        key: locator<DialogService>().dialogNavigationKey,
-        onGenerateRoute: (settings) => MaterialPageRoute(
-            builder: (context) => DialogManager(child: child)),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Futura',
+        scaffoldBackgroundColor: Color.fromRGBO(245, 246, 249, 1.0),
       ),
-      navigatorKey: locator<NavigationService>().navigationKey,
-      theme: ThemeData(
-        primaryColor: Color.fromARGB(255, 9, 202, 172),
-        backgroundColor: Color.fromARGB(255, 26, 27, 30),
-        textTheme: Theme.of(context).textTheme.apply(
-              fontFamily: 'Open Sans',
-            ),
-      ),
-      home: SignUpView(),
-      onGenerateRoute: generateRoute,
+      home: Onboarding(),
     );
   }
 }
