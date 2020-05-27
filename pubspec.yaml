@@ -24,15 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   firebase_auth: ^0.16.0
-  http: ^0.12.0+2
-  # async package to add additional Cancellable operations
-  async: ^2.0.8
-  # get it
-  get_it: ^3.0.0+1
-  # provider
-  provider: ^3.2.0
-  # provider architecture
-  provider_architecture: ^1.0.3
+  provider: ^4.1.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -60,8 +52,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
 
   assets:
-    - assets/images/title.png
-    - assets/images/icon_large.png
+    - assets/images/
+    - assets/images/Group6.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -88,15 +80,23 @@ flutter:
   #
 
   fonts:
-    - family: Open Sans
+    - family: Futura
       fonts:
-        - asset: assets/fonts/OpenSans-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/OpenSans-ExtraBold.ttf
-          weight: 800
-        - asset: assets/fonts/OpenSans-Light.ttf
-          weight: 300
-        - asset: assets/fonts/OpenSans-Regular.ttf
-          weight: 400
+        - asset: assets/fonts/futur.ttf
+        - asset: assets/fonts/Futura-Bold-Italic.ttf
+        - asset: assets/fonts/Futura-Bold.ttf
+        - asset: assets/fonts/Futura-Book-Italic.ttf
+        - asset: assets/fonts/Futura-Book.ttf
+        - asset: assets/fonts/Futura-Extra-Black.ttf
+        - asset: assets/fonts/Futura-Heavy-Italic.ttf
+        - asset: assets/fonts/Futura-Light-Italic.ttf
+        - asset: assets/fonts/Futura-light.ttf
+        - asset: assets/fonts/Futura-medium-bt.ttf
+        - asset: assets/fonts/Futura-medium-condensed-bt.ttf
+        - asset: assets/fonts/Futura-Medium-Italic.ttf
+    - family: FuturaHeavy
+      fonts:
+        - asset: assets/fonts/Futura-Heavy.ttf
+          weight: 900
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
