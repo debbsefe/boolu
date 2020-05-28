@@ -91,12 +91,14 @@ flutter:
         - asset: assets/fonts/Futura-Heavy-Italic.ttf
         - asset: assets/fonts/Futura-Light-Italic.ttf
         - asset: assets/fonts/Futura-light.ttf
-        - asset: assets/fonts/Futura-medium-bt.ttf
         - asset: assets/fonts/Futura-medium-condensed-bt.ttf
         - asset: assets/fonts/Futura-Medium-Italic.ttf
     - family: FuturaHeavy
       fonts:
         - asset: assets/fonts/Futura-Heavy.ttf
           weight: 900
+    - family: FuturaMedium
+      fonts:
+        - asset: assets/fonts/Futura-medium-bt.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
