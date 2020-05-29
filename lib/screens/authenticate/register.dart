@@ -1,9 +1,11 @@
 import 'package:boolu/screens/authenticate/onboarding.dart';
 import 'package:boolu/screens/authenticate/signin.dart';
-import 'package:boolu/screens/authenticate/resetpassword.dart';
 import 'package:boolu/screens/shared/loading.dart';
 import 'package:boolu/screens/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'package:boolu/services/auth.dart';
+
 
 class Register extends StatefulWidget {
   @override
@@ -12,6 +14,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
 
+  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
   bool signin = false;
@@ -120,14 +123,15 @@ class _RegisterState extends State<Register> {
                                 
                                   keyboardType: TextInputType.emailAddress,
                                   cursorColor: Colors.black,
+                                  obscureText: true,
                                   autofocus: false,
                                   decoration: textInputDecoration.copyWith(
                                       hintText: 'Password', prefixIcon: Icon(Icons.lock),),
                                   style: TextStyle(color: Colors.black),
                                   validator: (val) =>
-                                      val.isEmpty ? 'Enter an Email' : null,
+                                      val.length < 6 ? 'Password cannot be less than characters' : null,
                                   onChanged: (val) {
-                                    setState(() => email = val);
+                                    setState(() => password = val);
                                   }),
                             ),
                             
@@ -152,35 +156,48 @@ class _RegisterState extends State<Register> {
                                         style: new TextStyle(
                                             fontSize: 20.0, color: Colors.white, fontFamily: 'FuturaMedium')),
                                     onPressed: () async {
-                                      // if (_formKey.currentState.validate()) {
-                                      //   setState(() => loading = true);
-                                        // dynamic result = await _auth
-                                        //     .signInWithEmail(email, password);
+                                      if (_formKey.currentState.validate()) {
+                                        setState(() => loading = true);
+                                        dynamic result = await _auth
+                                            .registerWithEmail(email.trim(), password, fullName.trim());
                                           
-                                        // if (result == null){
+                                        if (result == null){
                                           
-                                        //   setState(() {
-                                        //     error = 'Invalid email or password';
-                                        //     loading = false;
-                                        //   });
-                                        // }
-                                      //}
+                                          setState(() {
+                                            error = 'Invalid email or password';
+                                            loading = false;
+                                          });
+                                        }
+                                      }
                                     },
                                   ),
 
                                 )),
-                                FlatButton(
-                              child: new Text('Already have an account? Login ',
-                                  style: new TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w300, color: Color.fromRGBO(49, 43, 43, 1.0), fontFamily: 'FuturaMedium')),
-                              onPressed: () {
-                                setState(() {
-                                    signin = true;
-                                });
-                                
-                              },
-                            ),
+                                Container(
+                              padding: EdgeInsets.all(10),
+                              child: Center(
+                                child: RichText(
+                                  text: TextSpan(
+                                      text: 'Already have an account?',
+                                      style: TextStyle(
+                                          color: Color.fromRGBO(49, 43, 43, 1.0), fontSize: 14),
+                                      children: <TextSpan>[
+                                        TextSpan(text: ' Register',
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(251, 187, 0, 1), fontSize: 14),
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+
+                                                setState(() {
+                                                  signin = true;
+                                                });
+                                              }
+                                        )
+                                      ]
+                                  ),
+                                ),
+                              )
+                          )
                         ]
                     ),
               ),

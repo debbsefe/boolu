@@ -4,6 +4,8 @@ import 'package:boolu/screens/authenticate/resetpassword.dart';
 import 'package:boolu/screens/shared/loading.dart';
 import 'package:boolu/screens/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+
 
 class SignIn extends StatefulWidget {
   @override
@@ -103,13 +105,14 @@ class _SignInState extends State<SignIn> {
                                   keyboardType: TextInputType.emailAddress,
                                   cursorColor: Colors.black,
                                   autofocus: false,
+                                  obscureText: true,
                                   decoration: textInputDecoration.copyWith(
                                       hintText: 'Password', prefixIcon: Icon(Icons.lock),),
                                   style: TextStyle(color: Colors.black),
                                   validator: (val) =>
                                       val.isEmpty ? 'Enter an Email' : null,
                                   onChanged: (val) {
-                                    setState(() => email = val);
+                                    setState(() => password = val);
                                   }),
                             ),
                             Row(
@@ -122,7 +125,7 @@ class _SignInState extends State<SignIn> {
                                 child: new Text('Forgot Password?',
                                     style: new TextStyle(
                                         fontSize: 16.0,
-                                        fontWeight: FontWeight.w700, color: Color.fromRGBO(49, 43, 43, 1.0), fontFamily: 'FuturaMedium')),
+                                         color: Color.fromRGBO(49, 43, 43, 1.0), fontFamily: 'FuturaMedium')),
                                 onPressed: () {
                                    Navigator.push(
                                       context,
@@ -171,18 +174,31 @@ class _SignInState extends State<SignIn> {
                                   ),
 
                                 )),
-                                FlatButton(
-                              child: new Text('Don\'t have an account? Register ',
-                                  style: new TextStyle(
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w300, color: Color.fromRGBO(49, 43, 43, 1.0), fontFamily: 'FuturaMedium')),
-                              onPressed: () {
-                                setState(() {
-                                    register = true;
-                                });
-                                
-                              },
-                            ),
+                                Container(
+                              padding: EdgeInsets.all(10),
+                              child: Center(
+                                child: RichText(
+                                  text: TextSpan(
+                                      text: 'Don\'t have an account?',
+                                      style: TextStyle(
+                                          color: Color.fromRGBO(49, 43, 43, 1.0), fontSize: 14),
+                                      children: <TextSpan>[
+                                        TextSpan(text: ' Register',
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(251, 187, 0, 1), fontSize: 14),
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+
+                                                setState(() {
+                                                  register = true;
+                                                });
+                                              }
+                                        )
+                                      ]
+                                  ),
+                                ),
+                              )
+                          )
                         ]
                     ),
               ),
