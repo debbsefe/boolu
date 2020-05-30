@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:boolu/model/user.dart';
-import 'package:boolu/services/database.dart';
+//import 'package:boolu/services/database.dart';
 import 'dart:async';
 
 
@@ -36,8 +36,12 @@ Future registerWithEmail(String email, String password, String fullName) async{
     try{
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
+      
+      UserUpdateInfo updateInfo = UserUpdateInfo();
+      updateInfo.displayName = fullName;
+      await user.updateProfile(updateInfo);
         
-      await DatabaseService(uid : user.uid).updateUserData(fullName, email);
+      //await DatabaseService(uid : user.uid).updateUserData(fullName, email);
 
       return _userFromFirebaseUser(user);
     }
