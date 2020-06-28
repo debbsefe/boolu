@@ -17,7 +17,6 @@ class _WrapperState extends State<Wrapper> {
 
    final user = Provider.of<User>(context);
 
-   // return either Home or Onboarding widget
    if(user == null){
      return Onboarding();
    }else{

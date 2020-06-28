@@ -1,13 +1,9 @@
-class User{
-
+class User {
   final String uid;
- 
-
-  User({ this.uid});
-
+  User({this.uid});
 }
 
-class UserData{
+class UserData {
   final String fullName;
   final String email;
   UserData({this.fullName, this.email});
