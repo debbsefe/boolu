@@ -1,7 +1,11 @@
 import 'package:boolu/screens/authenticate/onboarding.dart';
 import 'package:boolu/screens/authenticate/register.dart';
+import 'package:boolu/screens/authenticate/resetpassword.dart';
 import 'package:boolu/screens/shared/loading.dart';
+import 'package:boolu/screens/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+
 
 class SignIn extends StatefulWidget {
   @override
@@ -10,9 +14,18 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
 
+  final _formKey = GlobalKey<FormState>();
   bool loading = false;
   bool register = false;
   bool onboarding = false;
+  String email = '';
+  String password = '';
+  bool checkBox = false;
+  String error = '';
+
+  void changeCheck(bool newValue) => setState(() {
+    checkBox = newValue;
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +53,7 @@ class _SignInState extends State<SignIn> {
                   ),
                   
                   Form(
+                    key: _formKey,
                     child: Padding(
                         padding:
                             const EdgeInsets.fromLTRB(30.0, 200.0, 30.0, 0.0),
@@ -66,7 +80,125 @@ class _SignInState extends State<SignIn> {
                                 
                               ),
                             ),
-                          
+                          Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  15.0, 15.0, 15.0, 0.0),
+                              child: new TextFormField(
+                                
+                                  keyboardType: TextInputType.emailAddress,
+                                  cursorColor: Colors.black,
+                                  autofocus: false,
+                                  decoration: textInputDecoration.copyWith(
+                                      hintText: 'email address', prefixIcon: Icon(Icons.person),),
+                                  style: TextStyle(color: Colors.black),
+                                  validator: (val) =>
+                                      val.isEmpty ? 'Enter an Email' : null,
+                                  onChanged: (val) {
+                                    setState(() => email = val);
+                                  }),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  15.0, 15.0, 15.0, 0.0),
+                              child: new TextFormField(
+                                
+                                  keyboardType: TextInputType.emailAddress,
+                                  cursorColor: Colors.black,
+                                  autofocus: false,
+                                  obscureText: true,
+                                  decoration: textInputDecoration.copyWith(
+                                      hintText: 'Password', prefixIcon: Icon(Icons.lock),),
+                                  style: TextStyle(color: Colors.black),
+                                  validator: (val) =>
+                                      val.isEmpty ? 'Enter an Email' : null,
+                                  onChanged: (val) {
+                                    setState(() => password = val);
+                                  }),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                   ''                                        
+                                  ),                         
+                            FlatButton(
+                                child: new Text('Forgot Password?',
+                                    style: new TextStyle(
+                                        fontSize: 16.0,
+                                         color: Color.fromRGBO(49, 43, 43, 1.0), fontFamily: 'FuturaMedium')),
+                                onPressed: () {
+                                   Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => ResetPassword()));
+                                },
+                              ),
+                              
+                          ],
+                            ),
+                            Row(
+                                children: <Widget>[
+                                  Checkbox(value: checkBox, onChanged: changeCheck),
+                                  Text('Keep me logged in', style: new TextStyle(
+                                        color: Color.fromRGBO(49, 43, 43, 1.0), fontFamily: 'FuturaMedium')),
+                                ],
+                                ),
+                            Padding(
+                                padding:
+                                    EdgeInsets.fromLTRB(40.0, 25.0, 40.0, 20.0),
+                                child: SizedBox(
+                                  height: 60.0,
+                                  child: new FlatButton(
+                                    shape: new RoundedRectangleBorder(
+                                        borderRadius:
+                                            new BorderRadius.circular(25.0)),
+                                    color: Color.fromRGBO(1, 6, 38, 1.0),
+                                    child: new Text('Login',
+                                        style: new TextStyle(
+                                            fontSize: 20.0, color: Colors.white, fontFamily: 'FuturaMedium')),
+                                    onPressed: () async {
+                                      // if (_formKey.currentState.validate()) {
+                                      //   setState(() => loading = true);
+                                        // dynamic result = await _auth
+                                        //     .signInWithEmail(email, password);
+                                          
+                                        // if (result == null){
+                                          
+                                        //   setState(() {
+                                        //     error = 'Invalid email or password';
+                                        //     loading = false;
+                                        //   });
+                                        // }
+                                      //}
+                                    },
+                                  ),
+
+                                )),
+                                Container(
+                              padding: EdgeInsets.all(10),
+                              child: Center(
+                                child: RichText(
+                                  text: TextSpan(
+                                      text: 'Don\'t have an account?',
+                                      style: TextStyle(
+                                          color: Color.fromRGBO(49, 43, 43, 1.0), fontSize: 14),
+                                      children: <TextSpan>[
+                                        TextSpan(text: ' Register',
+                                            style: TextStyle(
+                                                color: Color.fromRGBO(251, 187, 0, 1), fontSize: 14),
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+
+                                                setState(() {
+                                                  register = true;
+                                                });
+                                              }
+                                        )
+                                      ]
+                                  ),
+                                ),
+                              )
+                          )
                         ]
                     ),
               ),
