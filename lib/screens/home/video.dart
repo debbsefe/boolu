@@ -24,7 +24,7 @@ class _VideoState extends State<Video> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: WebView(
-        initialUrl: getVideoUrl(),
+        initialUrl:getVideoUrl(),
         javascriptMode: JavascriptMode.unrestricted,
         onWebViewCreated: (WebViewController webViewController) {
           _controller.complete(webViewController);
@@ -34,14 +34,13 @@ class _VideoState extends State<Video> {
   }
 
   getVideoUrl() {
-    for (var item in widget.video) {
-      String url = item.embed
-          .toString()
-          .split(" src='")[1]
-          .split(" ' frameborder")[0]
-          .replaceFirst('https://', '');
-      print(url);
+      var item = widget.video[0];
+      var test = item.embed
+          .split("src=")[1]
+          .split("frameborder")[0];
+      String url = 
+          test.substring(1,test.length -2);
+      print('url $url stop');
       return url;
-    }
   }
 }
