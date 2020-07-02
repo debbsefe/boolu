@@ -11,7 +11,6 @@ class _HomeState extends State<Home> {
   final today = DateFormat('d MMMM yyyy').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
-    // final Function wp = Screen(MediaQuery.of(context).size).wp;
     return Scaffold(
       body: ListView(
         children: <Widget>[
@@ -37,71 +36,38 @@ class _HomeState extends State<Home> {
           GestureDetector(
             onTap: () => Navigator.push(
                 context, MaterialPageRoute(builder: (_) => League())),
-            child: Container(
-              width: double.infinity,
-              child: Image(
-                image: AssetImage(
-                  'assets/images/premier_league.png',
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (_) => League())),
-            child: Container(
-              width: MediaQuery.of(context).size.width * 1,
-              child: Image(
-                image: AssetImage(
-                  'assets/images/laliga.png',
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (_) => League())),
-            child: Container(
-              width: MediaQuery.of(context).size.width * 1,
-              child: Image(
-                image: AssetImage(
-                  'assets/images/ucl.png',
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (_) => League())),
-            child: Container(
-              width: MediaQuery.of(context).size.width * 1,
-              child: Image(
-                image: AssetImage(
-                  'assets/images/serie_a.png',
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (_) => League())),
-            child: Container(
-              width: MediaQuery.of(context).size.width * 1,
-              child: Image(
-                image: AssetImage(
-                  'assets/images/bundesliga.png',
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (_) => League())),
-            child: Container(
-              width: MediaQuery.of(context).size.width * 1,
-              child: Image(
-                image: AssetImage(
-                  'assets/images/ligue_1.png',
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Container(
+                height: 150,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/bg-premier.png'))),
+                child: Card(
+                  color: Color.fromRGBO(50, 97, 115, 0.8),
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Color.fromRGBO(50, 97, 115, 0.9),
+                      ),
+                      borderRadius: BorderRadius.circular(25.0)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Image.asset('assets/images/premierlogo.png'),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 25.0),
+                        child: Text(
+                          'Premier League',
+                          style: TextStyle(
+                            color: Color.fromRGBO(246, 246, 249, 1),
+                            fontFamily: 'FuturaHeavy',
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
