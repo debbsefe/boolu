@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 
 class League extends StatefulWidget {
   final List<Sport> sport;
-  League({this.sport});
+  final String category;
+  League({this.sport, this.category});
 
   @override
   _LeagueState createState() => _LeagueState();
@@ -16,20 +17,20 @@ class _LeagueState extends State<League> {
   @override
   void initState() {
     super.initState();
-    data = filterSport();
-    print(data);
+    data = filterSport(widget.category);
   }
 
-  dynamic filterSport() {
-    var sport = widget.sport.where(
-      (element) => element.competition.name == 'ENGLAND: Premier League',
-    );
+  dynamic filterSport(category) {
+    var sport = widget.sport
+        .where(
+          (element) => element.competition.name == category,
+        )
+        .toList();
     return sport;
   }
 
   @override
   Widget build(BuildContext context) {
-    print(widget.sport[0].competition.name);
     return Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black),
