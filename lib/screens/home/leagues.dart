@@ -1,25 +1,35 @@
 import 'package:boolu/model/api.dart';
 import 'package:boolu/screens/home/video.dart';
 import 'package:flutter/material.dart';
-import 'package:boolu/services/api.dart';
 import 'package:provider/provider.dart';
 
 class League extends StatefulWidget {
+  final List<Sport> sport;
+  League({this.sport});
+
   @override
   _LeagueState createState() => _LeagueState();
 }
 
 class _LeagueState extends State<League> {
+  List<Sport> data = [];
   @override
   void initState() {
     super.initState();
-    Api().fetchJobs();
+    data = filterSport();
+    print(data);
+  }
+
+  dynamic filterSport() {
+    var sport = widget.sport.where(
+      (element) => element.competition.name == 'ENGLAND: Premier League',
+    );
+    return sport;
   }
 
   @override
   Widget build(BuildContext context) {
-    final data = Provider.of<Api>(context);
-
+    print(widget.sport[0].competition.name);
     return Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black),
@@ -32,7 +42,7 @@ class _LeagueState extends State<League> {
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: ListView.builder(
-              itemCount: data.response.length,
+              itemCount: data.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -47,14 +57,13 @@ class _LeagueState extends State<League> {
                               onTap: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (_) => Video(
-                                          video: data.response[index].videos))),
+                                      builder: (_) =>
+                                          Video(video: data[index].videos))),
                               child: Image(
                                 height: 100,
                                 width: 100,
                                 fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    data.response[index].thumbnail),
+                                image: NetworkImage(data[index].thumbnail),
                               ),
                             ),
                           ),
@@ -64,13 +73,13 @@ class _LeagueState extends State<League> {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(children: <Widget>[
                               Text(
-                                data.response[index].title,
+                                data[index].title,
                                 style: TextStyle(
                                   fontFamily: 'FuturaHeavy',
                                 ),
                               ),
                               Text(
-                                data.response[index].date,
+                                data[index].date,
                                 style: TextStyle(
                                   fontFamily: 'FuturaLight',
                                 ),

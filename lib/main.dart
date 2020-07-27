@@ -5,6 +5,8 @@ import 'package:boolu/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/shared/appcolors.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -16,17 +18,14 @@ class MyApp extends StatelessWidget {
           value: AuthService().user,
         ),
         FutureProvider(
-          create: (context) => Api().fetchJobs(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => Api(),
+          create: (context) => Api().fetchSport(),
         ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Futura',
-          scaffoldBackgroundColor: Color.fromRGBO(245, 246, 249, 1.0),
+          scaffoldBackgroundColor: Appcolors.ScaffoldColor,
         ),
         home: Wrapper(),
       ),

@@ -1,3 +1,4 @@
+import 'package:boolu/screens/shared/appcolors.dart';
 import 'package:boolu/screens/home/livescores.dart';
 import 'package:boolu/screens/home/settings.dart';
 import 'package:flutter/material.dart';
@@ -31,9 +32,7 @@ class _HomeTabState extends State<HomeTab> {
     return Scaffold(
         body: _children[_currentIndex],
         bottomNavigationBar: new Theme(
-          data: Theme.of(context).copyWith(
-            canvasColor: Color.fromRGBO(245, 246, 249, 1.0),
-          ),
+          data: Theme.of(context).copyWith(canvasColor: Appcolors.TabBarColor),
           child: BottomNavigationBar(
             onTap: onTabTapped,
             type: BottomNavigationBarType.shifting,
@@ -46,7 +45,6 @@ class _HomeTabState extends State<HomeTab> {
                 activeIcon: Image(
                   image: AssetImage('assets/images/balltab.png'),
                 ),
-                // Icon(Icons.home, color: Color.fromRGBO(230, 175, 46, 1.0)),
                 title: Text(
                   '',
                   style: TextStyle(color: Colors.white),

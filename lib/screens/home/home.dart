@@ -1,28 +1,32 @@
+import 'package:boolu/model/api.dart';
+import 'package:boolu/screens/shared/appcolors.dart';
+import 'package:boolu/screens/shared/fontFamily.dart';
+import 'package:boolu/screens/shared/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:boolu/screens/home/leagues.dart';
+import 'package:provider/provider.dart';
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
+class Home extends StatelessWidget {
   final today = DateFormat('d MMMM yyyy').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
+    final data = Provider.of<List<Sport>>(context);
+    SizeConfig().init(context);
     return Scaffold(
       body: ListView(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding: EdgeInsets.all(
+              SizeConfig.safeBlockHorizontal * 18,
+            ),
             child: Text(
               'Matches For You Today',
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 24.0,
-                  color: Color.fromRGBO(166, 146, 50, 1.0),
-                  fontFamily: 'FuturaHeavy',
+                  fontSize: SizeConfig.safeBlockHorizontal * 3,
+                  color: Appcolors.TextHeading,
+                  fontFamily: FontFamily.futuraHeavy,
                   fontWeight: FontWeight.w900),
             ),
           ),
@@ -30,24 +34,30 @@ class _HomeState extends State<Home> {
             today,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: 'FuturaLight',
+              fontFamily: FontFamily.futuraLight,
             ),
           ),
           GestureDetector(
             onTap: () => Navigator.push(
-                context, MaterialPageRoute(builder: (_) => League())),
+                context,
+                MaterialPageRoute(
+                    builder: (_) => League(
+                          sport: data,
+                        ))),
             child: Padding(
-              padding: const EdgeInsets.all(30.0),
+              padding: EdgeInsets.all(
+                SizeConfig.safeBlockHorizontal * 3,
+              ),
               child: Container(
-                height: 150,
+                height: SizeConfig.safeBlockVertical * 15,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage('assets/images/bg-premier.png'))),
                 child: Card(
-                  color: Color.fromRGBO(50, 97, 115, 0.8),
+                  color: Appcolors.BlueCard,
                   shape: RoundedRectangleBorder(
                       side: BorderSide(
-                        color: Color.fromRGBO(50, 97, 115, 0.9),
+                        color: Appcolors.BlueCardBorder,
                       ),
                       borderRadius: BorderRadius.circular(25.0)),
                   child: Column(
@@ -56,13 +66,15 @@ class _HomeState extends State<Home> {
                     children: <Widget>[
                       Image.asset('assets/images/premierlogo.png'),
                       Padding(
-                        padding: const EdgeInsets.only(left: 25.0),
+                        padding: EdgeInsets.only(
+                          left: SizeConfig.safeBlockHorizontal * 25,
+                        ),
                         child: Text(
                           'Premier League',
                           style: TextStyle(
-                            color: Color.fromRGBO(246, 246, 249, 1),
-                            fontFamily: 'FuturaHeavy',
-                            fontSize: 18,
+                            color: Appcolors.CardWhiteText,
+                            fontFamily: FontFamily.futuraHeavy,
+                            fontSize: SizeConfig.safeBlockHorizontal * 2,
                           ),
                         ),
                       ),
