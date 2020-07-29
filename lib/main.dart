@@ -1,4 +1,5 @@
 import 'package:boolu/model/user.dart';
+import 'package:boolu/screens/shared/fontFamily.dart';
 import 'package:boolu/screens/wrapper.dart';
 import 'package:boolu/services/api.dart';
 import 'package:boolu/services/auth.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: 'Futura',
+          fontFamily: FontFamily.futuraMedium,
           primaryColor: Appcolors.ScaffoldColor,
           // primarySwatch: Appcolors.ScaffoldColor,
           scaffoldBackgroundColor: Appcolors.ScaffoldColor,
