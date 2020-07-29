@@ -32,7 +32,9 @@ class _HomeTabState extends State<HomeTab> {
     return Scaffold(
         body: _children[_currentIndex],
         bottomNavigationBar: new Theme(
-          data: Theme.of(context).copyWith(canvasColor: Appcolors.TabBarColor),
+          data: Theme.of(context).copyWith(
+            canvasColor: Appcolors.ScaffoldColor,
+          ),
           child: BottomNavigationBar(
             onTap: onTabTapped,
             type: BottomNavigationBarType.shifting,

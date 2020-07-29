@@ -10,6 +10,8 @@ class HomeCard extends StatelessWidget {
   final Color borderColor;
   final String text;
   final String logoImage;
+  final EdgeInsetsGeometry padding1;
+  final EdgeInsetsGeometry padding2;
 
   HomeCard(
       {this.onTap,
@@ -17,34 +19,37 @@ class HomeCard extends StatelessWidget {
       this.bgColor,
       this.borderColor,
       this.text,
-      this.logoImage});
+      this.logoImage,
+      this.padding1,
+      this.padding2});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         height: SizeConfig.safeBlockVertical * 25,
-        decoration:
-            BoxDecoration(image: DecorationImage(image: AssetImage(bgImage))),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage(bgImage),
+        )),
         child: Card(
           color: bgColor,
           shape: RoundedRectangleBorder(
               side: BorderSide(
                 color: borderColor,
               ),
-              borderRadius: BorderRadius.circular(25.0)),
+              borderRadius:
+                  BorderRadius.circular(SizeConfig.safeBlockHorizontal * 6)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Padding(
-                padding:
-                    EdgeInsets.only(left: SizeConfig.safeBlockHorizontal * 5),
+                padding: padding1 ?? EdgeInsets.zero,
                 child: Image.asset(logoImage),
               ),
               Padding(
-                padding:
-                    EdgeInsets.only(left: SizeConfig.safeBlockHorizontal * 5),
+                padding: padding2 ?? EdgeInsets.zero,
                 child: Text(
                   text,
                   style: TextStyle(

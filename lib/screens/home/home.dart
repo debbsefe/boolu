@@ -1,5 +1,6 @@
 import 'package:boolu/model/api.dart';
 import 'package:boolu/screens/shared/appcolors.dart';
+import 'package:boolu/screens/shared/constants.dart';
 import 'package:boolu/screens/shared/fontFamily.dart';
 import 'package:boolu/screens/shared/size_config.dart';
 import 'package:boolu/screens/shared/widgets.dart';
@@ -47,12 +48,16 @@ class Home extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (_) => League(
-                          sport: data, category: 'ENGLAND: Premier League'))),
+                          sport: data, category: Strings.premierLeague))),
               bgImage: 'assets/images/bg-premier.png',
               bgColor: Appcolors.BlueCard,
               borderColor: Appcolors.BlueCardBorder,
               logoImage: 'assets/images/premierlogo.png',
               text: 'Premier League',
+              padding1:
+                  EdgeInsets.only(left: SizeConfig.safeBlockHorizontal * 7),
+              padding2:
+                  EdgeInsets.only(left: SizeConfig.safeBlockHorizontal * 5),
             ),
             SizedBox(
               height: SizeConfig.safeBlockVertical * 4,
@@ -62,12 +67,16 @@ class Home extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (_) =>
-                          League(sport: data, category: 'SPAIN: La Liga'))),
+                          League(sport: data, category: Strings.laLiga))),
               bgImage: 'assets/images/laligabg.png',
-              bgColor: Appcolors.BlueCard,
-              borderColor: Appcolors.BlueCardBorder,
+              bgColor: Appcolors.LightBlueCard,
+              borderColor: Appcolors.LightBlueCardBorder,
               logoImage: 'assets/images/laligalogo.png',
               text: 'La Liga',
+              padding1:
+                  EdgeInsets.only(left: SizeConfig.safeBlockHorizontal * 14),
+              padding2:
+                  EdgeInsets.only(left: SizeConfig.safeBlockHorizontal * 5),
             ),
             SizedBox(
               height: SizeConfig.safeBlockVertical * 4,
@@ -77,12 +86,14 @@ class Home extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (_) =>
-                          League(sport: data, category: 'ITALY: Serie A'))),
+                          League(sport: data, category: Strings.serieA))),
               bgImage: 'assets/images/serieAbg.png',
               bgColor: Appcolors.BlueCard,
               borderColor: Appcolors.BlueCardBorder,
               logoImage: 'assets/images/serieAlogo.png',
               text: 'Serie A',
+              padding2:
+                  EdgeInsets.only(left: SizeConfig.safeBlockHorizontal * 5),
             ),
           ],
         ),

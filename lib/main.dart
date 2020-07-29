@@ -25,6 +25,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Futura',
+          primaryColor: Appcolors.ScaffoldColor,
+          // primarySwatch: Appcolors.ScaffoldColor,
           scaffoldBackgroundColor: Appcolors.ScaffoldColor,
         ),
         home: Wrapper(),
