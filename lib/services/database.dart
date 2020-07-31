@@ -3,28 +3,29 @@ import 'package:boolu/model/user.dart';
 
 class DatabaseService {
   final String uid;
-  DatabaseService({ this.uid, this.firestore});
+  DatabaseService({this.uid, this.firestore});
 
-  final CollectionReference userCollection = Firestore.instance.collection('users');
+  final CollectionReference userCollection =
+      Firestore.instance.collection('users');
   final Firestore firestore;
 
-  Future updateUserData(String fullName, String email) async{
+  Future updateUserData(
+      String fullName, String email, String profilePhoto) async {
     return await userCollection.document(uid).setData({
-      'fullName': fullName,      
-      'email' : email,
+      'fullName': fullName,
+      'email': email,
+      'profilePhoto': profilePhoto,
     });
   }
 
-UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(
+      fullName: snapshot.data['fullName'],
+      email: snapshot.data['email'],
+    );
+  }
 
-  return UserData(
-    fullName: snapshot.data['fullName'],
-    email: snapshot.data['email'],
-     
-  );
-}
   Stream<UserData> get userData {
-    return userCollection.document(uid).snapshots()
-      .map(_userDataFromSnapshot);
+    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }
 }

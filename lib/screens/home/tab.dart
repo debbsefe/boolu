@@ -1,6 +1,6 @@
 import 'package:boolu/screens/shared/appcolors.dart';
-import 'package:boolu/screens/home/livescores.dart';
-import 'package:boolu/screens/home/settings.dart';
+import 'package:boolu/screens/livescores/livescores.dart';
+import 'package:boolu/screens/settings/settings.dart';
 import 'package:flutter/material.dart';
 
 import 'home.dart';

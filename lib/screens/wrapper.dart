@@ -3,7 +3,7 @@ import 'package:boolu/screens/home/tab.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:boolu/screens/authenticate/onboarding.dart';
-// import 'package:boolu/screens/home/home.dart';
+import 'package:boolu/services/dynamiclinks.dart';
 
 class Wrapper extends StatefulWidget {
   @override
@@ -11,6 +11,12 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
+  @override
+  void initState() {
+    super.initState();
+    DynamicLinks().fetchLinkData();
+  }
+
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
 

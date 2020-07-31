@@ -1,6 +1,7 @@
 import 'package:boolu/screens/authenticate/onboarding.dart';
 import 'package:boolu/screens/authenticate/signin.dart';
 import 'package:boolu/screens/shared/appcolors.dart';
+import 'package:boolu/screens/shared/dialogs.dart';
 import 'package:boolu/screens/shared/fontFamily.dart';
 import 'package:boolu/screens/shared/loading.dart';
 import 'package:boolu/screens/shared/constants.dart';
@@ -186,10 +187,14 @@ class _RegisterState extends State<Register> {
 
                                           if (result == null) {
                                             setState(() {
-                                              error =
-                                                  'Invalid email or password';
                                               loading = false;
                                             });
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) => FailureDialog(
+                                                        text:
+                                                            'An error occured, please try again')));
                                           }
                                         }
                                       },
@@ -213,14 +218,35 @@ class _RegisterState extends State<Register> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(
                                         SizeConfig.safeBlockHorizontal * 6),
-                                    child: Container(
-                                        height:
-                                            SizeConfig.blockSizeHorizontal * 10,
-                                        width:
-                                            SizeConfig.blockSizeHorizontal * 10,
-                                        color: Appcolors.ButtonColor,
-                                        child: Image.asset(
-                                            'assets/images/google.png')),
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        setState(() => loading = true);
+                                        dynamic result =
+                                            await _auth.signInWithGoogle();
+
+                                        if (result == null) {
+                                          setState(() {
+                                            loading = false;
+                                          });
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) => FailureDialog(
+                                                      text:
+                                                          'An error occured, please try again')));
+                                        }
+                                      },
+                                      child: Container(
+                                          height:
+                                              SizeConfig.blockSizeHorizontal *
+                                                  10,
+                                          width:
+                                              SizeConfig.blockSizeHorizontal *
+                                                  10,
+                                          color: Appcolors.ButtonColor,
+                                          child: Image.asset(
+                                              'assets/images/google.png')),
+                                    ),
                                   ),
                                   SizedBox(
                                     width: SizeConfig.blockSizeHorizontal * 3,

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:boolu/model/api.dart';
+import 'package:boolu/model/standings.dart';
 import 'package:http/http.dart';
 
 class Api {
