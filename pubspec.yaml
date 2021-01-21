@@ -23,14 +23,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^0.16.0
   provider: ^4.1.2
-  cloud_firestore: ^0.13.6
   intl: ^0.16.1
-  webview_flutter: ^0.3.22+1
   http: ^0.12.1
-  google_sign_in: ^4.5.1
-  firebase_dynamic_links: ^0.5.3
   share: ^0.6.4+3
   cached_network_image: ^2.2.0+1
 
@@ -59,7 +54,6 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/images/Group6.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -72,43 +66,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+
   #
 
-  fonts:
-    - family: Futura
-      fonts:
-        - asset: assets/fonts/futur.ttf
-        - asset: assets/fonts/Futura-Bold-Italic.ttf
-        - asset: assets/fonts/Futura-Bold.ttf
-        - asset: assets/fonts/Futura-Book-Italic.ttf
-        - asset: assets/fonts/Futura-Book.ttf
-        - asset: assets/fonts/Futura-Extra-Black.ttf
-        - asset: assets/fonts/Futura-Heavy-Italic.ttf
-        - asset: assets/fonts/Futura-Light-Italic.ttf
-        - asset: assets/fonts/Futura-light.ttf
-        - asset: assets/fonts/Futura-medium-condensed-bt.ttf
-        - asset: assets/fonts/Futura-Medium-Italic.ttf
-    - family: FuturaHeavy
-      fonts:
-        - asset: assets/fonts/Futura-Heavy.ttf
-          weight: 900
-    - family: FuturaMedium
-      fonts:
-        - asset: assets/fonts/Futura-medium-bt.ttf
-    - family: FuturaLight
-      fonts:
-        - asset: assets/fonts/Futura-light.ttf
-          weight: 300
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
