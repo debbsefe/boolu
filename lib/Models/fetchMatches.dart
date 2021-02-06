@@ -1,6 +1,6 @@
 
-class FetchMatches {
-    FetchMatches({
+class FetchMatchesModel {
+    FetchMatchesModel({
         this.count,
         this.filters,
         this.competition,
@@ -12,7 +12,7 @@ class FetchMatches {
     Competition competition;
     List<Match> matches;
 
-    factory FetchMatches.fromJson(Map<String, dynamic> json) => FetchMatches(
+    factory FetchMatchesModel.fromJson(Map<String, dynamic> json) => FetchMatchesModel(
         count: json["count"],
         filters: Filters.fromJson(json["filters"]),
         competition: Competition.fromJson(json["competition"]),

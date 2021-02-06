@@ -11,7 +11,7 @@ class MatchesInitial extends MatchesState {}
 class MatchesLoading extends MatchesState {}
 
 class MatchesLoaded extends MatchesState {
-  final FetchMatches fetchMatches;
+  final FetchMatchesModel fetchMatches;
 
   MatchesLoaded(this.fetchMatches);
 }
