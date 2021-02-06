@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:Boolu/Models/fetchMatches.dart';
-import 'package:Boolu/Services/api_service.dart';
+import 'package:Boolu/features/matches/data/models/fetchMatchModel.dart';
+import 'package:Boolu/features/matches/domain/repositories/api_service.dart';
 import 'package:bloc/bloc.dart';
 import 'matches_state.dart';
 import 'matches_event.dart';

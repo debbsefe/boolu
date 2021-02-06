@@ -1,9 +1,9 @@
-import 'package:Boolu/Logic/bloc/matches_bloc.dart';
-import 'package:Boolu/Logic/bloc/matches_state.dart';
-import 'package:Boolu/Logic/bloc/matches_event.dart';
-import 'package:Boolu/Services/api_service.dart';
-import 'package:Boolu/Utils/font_constants.dart';
-import 'package:Boolu/Utils/size_config.dart';
+import 'package:Boolu/core/utils/font_constants.dart';
+import 'package:Boolu/core/utils/size_config.dart';
+import 'package:Boolu/features/matches/domain/repositories/api_service.dart';
+import 'package:Boolu/features/matches/presentation/bloc/matches_bloc.dart';
+import 'package:Boolu/features/matches/presentation/bloc/matches_event.dart';
+import 'package:Boolu/features/matches/presentation/bloc/matches_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,13 +56,7 @@ class Home extends StatelessWidget {
             ),
             BlocBuilder<MatchesBloc, MatchesState>(
               builder: (context, state) {
-                if (state is MatchesInitial) {
-                  return Text('Initial',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: width * font12,
-                      ));
-                } else if (state is MatchesLoading) {
+                if (state is MatchesLoading) {
                   return CircularProgressIndicator();
                 } else if (state is MatchesLoaded) {
                   return Text(state.fetchMatches.competition.name,
@@ -77,7 +71,11 @@ class Home extends StatelessWidget {
                         fontSize: width * font12,
                       ));
                 } else {
-                  return Text('Initial');
+                  return Text('Initial',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: width * font12,
+                      ));
                 }
               },
             ),

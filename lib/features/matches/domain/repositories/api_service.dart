@@ -1,7 +1,6 @@
-import 'package:Boolu/Models/fetchMatches.dart';
-import 'package:Boolu/Utils/strings.dart';
-
-import 'network_helper.dart';
+import 'package:Boolu/core/utils/strings.dart';
+import 'package:Boolu/features/matches/data/models/fetchMatchModel.dart';
+import 'package:Boolu/features/matches/data/repository/network_helper.dart';
 
 class ApiService {
   NetworkHandler _networkHandler = NetworkHandler();

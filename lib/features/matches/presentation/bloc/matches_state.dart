@@ -1,4 +1,4 @@
-import 'package:Boolu/Models/fetchMatches.dart';
+import 'package:Boolu/features/matches/data/models/fetchMatchModel.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class MatchesState extends Equatable {
