@@ -1,11 +1,10 @@
-import 'package:Boolu/presentation/screens/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'Logic/bloc/matches_bloc.dart';
-import 'Services/api_service.dart';
+import 'features/matches/domain/repositories/api_service.dart';
+import 'features/matches/presentation/bloc/matches_bloc.dart';
+import 'features/matches/presentation/screens/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
