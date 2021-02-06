@@ -86,8 +86,8 @@ class Home extends StatelessWidget {
                 // ignore: close_sinks
                 final weatherBloc = BlocProvider.of<MatchesBloc>(context);
 
-                weatherBloc.add(
-                    GetMatches("201", "2020", "2021-02-06", "2021-02-06"));
+                weatherBloc
+                    .add(GetMatches("201", "2020", "2021-02-06", "2021-02-06"));
               },
               child: Text('Press me',
                   style: TextStyle(
