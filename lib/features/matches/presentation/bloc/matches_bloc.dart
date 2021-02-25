@@ -6,11 +6,11 @@ import 'matches_state.dart';
 import 'matches_event.dart';
 
 class MatchesBloc extends Bloc<MatchesEvent, MatchesState> {
-  final ApiService _apiService;
+  ApiService _apiService = ApiService();
 
   FetchMatchesModel fetchMatchesModel;
 
-  MatchesBloc(this._apiService) : super(MatchesInitial());
+  MatchesBloc() : super(MatchesInitial());
 
   @override
   Stream<MatchesState> mapEventToState(

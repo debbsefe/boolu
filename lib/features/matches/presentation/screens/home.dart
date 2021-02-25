@@ -1,13 +1,15 @@
 import 'package:Boolu/core/utils/font_constants.dart';
 import 'package:Boolu/core/utils/size_config.dart';
 import 'package:Boolu/core/utils/theme.dart';
-import 'package:Boolu/features/matches/domain/repositories/api_service.dart';
+import 'package:Boolu/features/matches/presentation/cubits/calendar/cubit/calendar_cubit.dart';
+import 'package:Boolu/features/matches/presentation/widgets/date_parser.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
+import 'package:get/get.dart';
+import 'calendar/calender_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Home extends StatelessWidget {
-  final ApiService apiService = ApiService();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,7 +19,17 @@ class Home extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                BuildNavBar(),
+                BlocBuilder<CalendarCubit, CalendarState>(
+                  builder: (context, state) {
+                    if (state.status == Status.showCalendar) {
+                      return CalendarWidget();
+                    }
+                    if (state.status == Status.showSelectedDate) {
+                      return BuildSelectedDateWidget();
+                    }
+                    return BuildNavBar();
+                  },
+                ),
                 Height(3.0.h),
                 BuildLeague(),
                 Height(3.0.h),
@@ -31,43 +43,64 @@ class Home extends StatelessWidget {
   }
 }
 
-class BuildNavBar extends StatelessWidget {
-  final dateFormat = DateFormat("MMMd");
-  final dayFormat = DateFormat('E');
+class BuildSelectedDateWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return
+        // header
+        Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        GestureDetector(
+          onTap: () {
+            context.read<CalendarCubit>().hideCalendar();
+          },
+          child: Column(
+            children: [
+              Text('Today',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white.withOpacity(0.85),
+                    fontSize: 10,
+                  )),
+              Height(5),
+              Text('${dateFormat.format(getDay(0, false))}',
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.85),
+                    fontSize: 8,
+                  )),
+            ],
+          ),
+        ),
 
-  DateTime getDay(int day, bool isAdd) {
-    final DateTime today = DateTime.now();
-    return isAdd
-        ? today.add(new Duration(days: day))
-        : today.subtract(new Duration(days: day));
+        // month and year
+        Text(
+          fullYearFormat.format(context.watch<CalendarCubit>().state.value),
+          style: TextStyle(
+              color: CustomTheme.accent1,
+              fontSize: 10,
+              fontWeight: FontWeight.w700),
+        ),
+
+        //calender close button
+        GestureDetector(
+            onTap: () {
+              DateTime value = context.read<CalendarCubit>().state.value;
+              context.read<CalendarCubit>().showCalendar(value);
+            },
+            child: Image.asset('assets/images/calendar_down.png',
+                scale: 5, color: CustomTheme.accent1)),
+      ],
+    );
   }
+}
 
+class BuildNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     double width = SizeConfig.blockSizeHorizontal;
 
-    final List<String> day = [
-      dayFormat.format(getDay(3, false)),
-      dayFormat.format(getDay(2, false)),
-      dayFormat.format(getDay(1, false)),
-      'Today',
-      dayFormat.format(getDay(1, true)),
-      dayFormat.format(getDay(2, true)),
-      dayFormat.format(getDay(3, true)),
-    ];
-
-    final List<String> dayh = [
-      'Live',
-      dateFormat.format(getDay(3, false)),
-      dateFormat.format(getDay(2, false)),
-      dateFormat.format(getDay(1, false)),
-      dateFormat.format(getDay(0, false)),
-      dateFormat.format(getDay(1, true)),
-      dateFormat.format(getDay(2, true)),
-      dateFormat.format(getDay(3, true)),
-      'Date'
-    ];
     return Column(
       children: [
         Row(
@@ -88,7 +121,14 @@ class BuildNavBar extends StatelessWidget {
               ),
             ),
             Expanded(
-                flex: 1, child: Image.asset('assets/images/calendar_icon.png')),
+              flex: 1,
+              child: GestureDetector(
+                  onTap: () {
+                    DateTime value = context.read<CalendarCubit>().state.value;
+                    context.read<CalendarCubit>().showCalendar(value);
+                  },
+                  child: Image.asset('assets/images/calendar_icon.png')),
+            )
           ],
         ),
         Row(

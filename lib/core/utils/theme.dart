@@ -16,6 +16,7 @@ class CustomTheme {
   static const Color accent2 = Color(0xFFE0372C);
   static const Color buttonColor = Color(0xFFD6A127);
   static const Color lightGreen = Color(0xff6EFB00);
+  static const Color purple = Color(0xff030933);
 
   static const TextStyle navbarText1 = TextStyle(
     color: white,
