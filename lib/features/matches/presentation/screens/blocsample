@@ -1,0 +1,41 @@
+      
+           
+     BlocBuilder<MatchesBloc, MatchesState>(
+              builder: (context, state) {
+                if (state is MatchesLoading) {
+                  return CircularProgressIndicator();
+                } else if (state is MatchesLoaded) {
+                  return Text(state.fetchMatches.competition.name,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: width * font12,
+                      ));
+                } else if (state is MatchesError) {
+                  return Text(state.error.message,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: width * font12,
+                      ));
+                } else {
+                  return Text('Initial',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: width * font12,
+                      ));
+                }
+              },
+            ),
+            FlatButton(
+              onPressed: () async {
+                // ignore: close_sinks
+                final weatherBloc = BlocProvider.of<MatchesBloc>(context);
+
+                weatherBloc
+                    .add(GetMatches("201", "2020", "2021-02-06", "2021-02-06"));
+              },
+              child: Text('Press me',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: width * font12,
+                  )),
+            ),
