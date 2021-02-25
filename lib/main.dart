@@ -4,10 +4,10 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import 'features/matches/domain/repositories/api_service.dart';
 import 'features/matches/presentation/bloc/matches_bloc.dart';
-import 'features/matches/presentation/screens/home.dart';
+import 'features/matches/presentation/cubits/calendar/cubit/calendar_cubit.dart';
 import 'features/matches/presentation/screens/home_tab.dart';
+import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,9 +25,16 @@ class MyApp extends StatelessWidget {
       builder: (context, constraints) {
         return OrientationBuilder(builder: (context, orientation) {
           SizerUtil().init(constraints, orientation);
-          return BlocProvider(
-            create: (context) => MatchesBloc(ApiService()),
-            child: MaterialApp(
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (BuildContext context) => MatchesBloc(),
+              ),
+              BlocProvider(
+                create: (BuildContext context) => CalendarCubit(),
+              ),
+            ],
+            child: GetMaterialApp(
               debugShowCheckedModeBanner: false,
               home: HomeTab(),
               theme: ThemeData(
