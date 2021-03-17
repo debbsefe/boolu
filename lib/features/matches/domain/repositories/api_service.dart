@@ -7,9 +7,9 @@ class ApiService {
 
   ///fetch matches for a date
   Future<FetchMatchesModel> fetchMatches(
-      String competionId, String season, String dateFrom, String dateTo) async {
+      String competionId, String dateFrom, String dateTo) async {
     String url =
-        "/competitions/$competionId/matches?season=$season&dateFrom=$dateFrom&dateTo=$dateTo";
+        "/competitions/$competionId/matches?dateFrom=$dateFrom&dateTo=$dateTo";
     var _result =
         await _networkHandler.get(footballDatabaseUrl, url, footballdata);
     FetchMatchesModel fetchMatches = FetchMatchesModel.fromJson(_result);

@@ -9,7 +9,7 @@ class FetchMatchesModel {
   int count;
   Filters filters;
   Competition competition;
-  List<Match> matches;
+  List<Matches> matches;
 
   factory FetchMatchesModel.fromJson(Map<String, dynamic> json) =>
       FetchMatchesModel(
@@ -17,7 +17,7 @@ class FetchMatchesModel {
         filters: Filters.fromJson(json["filters"]),
         competition: Competition.fromJson(json["competition"]),
         matches:
-            List<Match>.from(json["matches"].map((x) => Match.fromJson(x))),
+            List<Matches>.from(json["matches"].map((x) => Matches.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -92,8 +92,8 @@ class Filters {
   Map<String, dynamic> toJson() => {};
 }
 
-class Match {
-  Match({
+class Matches {
+  Matches({
     this.id,
     this.season,
     this.utcDate,
@@ -123,7 +123,7 @@ class Match {
   Area awayTeam;
   List<dynamic> referees;
 
-  factory Match.fromJson(Map<String, dynamic> json) => Match(
+  factory Matches.fromJson(Map<String, dynamic> json) => Matches(
         id: json["id"],
         season: Season.fromJson(json["season"]),
         utcDate: DateTime.parse(json["utcDate"]),
