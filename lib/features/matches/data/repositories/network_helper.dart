@@ -21,19 +21,15 @@ class NetworkHandler {
     }
   }
 
-  Future getWithoutToken(String baseUrl, String url) async {
-    url = formater(baseUrl, url);
-    var response = await http.get(
-      url,
-      headers: {"content-type": "application/json"},
-    );
-
+  Future getTokenInParams(String baseUrl, String url) async {
     try {
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return json.decode(response.body);
-      }
-    } catch (e) {
-      print(e.toString());
+      url = formater(baseUrl, url);
+      var response = await http.get(url);
+      return _returnResponse(response);
+    } on SocketException {
+      throw FetchNetworkException('No Internet connection detected');
+    } on FormatException {
+      throw InvalidFormatException('Invalid Response format');
     }
   }
 

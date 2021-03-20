@@ -116,14 +116,15 @@ class BuildNavBar extends StatelessWidget {
                 children: day.map((e) {
                   return InkWell(
                     onTap: () {
-                      print('e $e');
+                      print('unformattedDate ${e[unformattedDate]}');
+                      final String date =
+                          e[unformattedDate].toString().split(" ")[0];
                       final weatherBloc =
                           BlocProvider.of<MatchesBloc>(context, listen: false);
 
-                      weatherBloc.add(GetMatches(
-                          "2021", todayWithoutTime, todayWithoutTime));
+                      weatherBloc.add(GetMatches(dateFrom: date, dateTo: date));
                     },
-                    child: Text(e,
+                    child: Text(e[formattedDate],
                         style: CustomTheme.navbarText1.copyWith(
                           fontSize: width * font12,
                         )),

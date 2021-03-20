@@ -10,5 +10,5 @@ abstract class MatchesEvent extends Equatable {
 class GetMatches extends MatchesEvent {
   final String competionId, dateFrom, dateTo;
 
-  GetMatches(this.competionId, this.dateFrom, this.dateTo);
+  GetMatches({this.competionId, this.dateFrom, this.dateTo});
 }
