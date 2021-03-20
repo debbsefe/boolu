@@ -4,16 +4,18 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import 'features/matches/presentation/bloc/matches_bloc.dart';
+import 'features/matches/presentation/bloc/matches/bloc/matches_bloc.dart';
 import 'features/matches/presentation/cubits/calendar/cubit/calendar_cubit.dart';
 import 'features/matches/presentation/screens/home_tab.dart';
 import 'package:get/get.dart';
+import 'injection_container.dart' as di;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  await di.init();
 
   runApp(MyApp());
 }
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
           return MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (BuildContext context) => MatchesBloc(),
+                create: (BuildContext context) => di.sl<MatchesBloc>(),
               ),
               BlocProvider(
                 create: (BuildContext context) => CalendarCubit(),
