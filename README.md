@@ -4,6 +4,8 @@
 
 Boolu is a football mobile application where you can find updated football stats and scores for different leagues.
 
+[![Codemagic build status](https://api.codemagic.io/apps/60565e55612f0df040cdb6e2/60565e55612f0df040cdb6e1/status_badge.svg)](https://codemagic.io/apps/60565e55612f0df040cdb6e2/60565e55612f0df040cdb6e1/latest_build)
+
 ## App Development info
 
 _Folder Structure_
