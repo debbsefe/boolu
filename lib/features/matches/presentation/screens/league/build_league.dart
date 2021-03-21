@@ -2,6 +2,7 @@ import 'package:Boolu/core/utils/font_constants.dart';
 import 'package:Boolu/core/utils/size_config.dart';
 import 'package:Boolu/core/utils/theme.dart';
 import 'package:Boolu/features/matches/presentation/bloc/matches/bloc/matches_bloc.dart';
+import 'package:Boolu/features/matches/presentation/cubits/calendar/cubit/calendar_cubit.dart';
 import 'package:Boolu/features/matches/presentation/widgets/date_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -43,6 +44,10 @@ class _BuildLeagueState extends State<BuildLeague> {
             ));
       } else if (state is MatchesLoaded) {
         final matches = state.matchesModel;
+        DateTime selectedTime = context.watch<CalendarCubit>().state.value;
+        String _currentDate = selectedTime == null
+            ? dateFormat.format(today)
+            : dateFormat.format(selectedTime);
         return Column(
           children: [
             matches.isEmpty
@@ -68,7 +73,7 @@ class _BuildLeagueState extends State<BuildLeague> {
                           flex: 2,
                           child: Row(
                             children: [
-                              Text('Feb 4',
+                              Text(_currentDate,
                                   style: CustomTheme.navbarText1.copyWith(
                                     fontSize: width * font12,
                                   )),
