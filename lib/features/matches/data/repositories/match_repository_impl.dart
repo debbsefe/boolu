@@ -23,17 +23,17 @@ class MatchRepositoryImpl implements MatchRepository {
       String dateFrom, String dateTo) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteTrivia =
+        final remoteMatch =
             await remoteDataSource.getLeagueMatches(dateFrom, dateTo);
-        localDataSource.cacheMatch(remoteTrivia);
-        return Right(remoteTrivia);
+        localDataSource.cacheMatch(remoteMatch);
+        return Right(remoteMatch);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
       try {
-        final localTrivia = await localDataSource.getLastMatch();
-        return Right(localTrivia);
+        final localMatch = await localDataSource.getLastMatch();
+        return Right(localMatch);
       } on CacheException {
         return Left(CacheFailure());
       }

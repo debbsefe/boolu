@@ -14,7 +14,7 @@ DateTime getDay(int day, bool isAdd) {
       : today.subtract(new Duration(days: day));
 }
 
-final List<Map> day = [
+final List<Map<String, Object>> day = [
   {
     formattedDate: dayFormat.format(getDay(3, false)),
     unformattedDate: getDay(3, false)
@@ -42,14 +42,44 @@ final List<Map> day = [
   },
 ];
 
-final List<String> dayh = [
-  'Live',
-  dateFormat.format(getDay(3, false)),
-  dateFormat.format(getDay(2, false)),
-  dateFormat.format(getDay(1, false)),
-  dateFormat.format(getDay(0, false)),
-  dateFormat.format(getDay(1, true)),
-  dateFormat.format(getDay(2, true)),
-  dateFormat.format(getDay(3, true)),
-  'Date'
+final List<Map<String, Object>> dayh = [
+  {formattedDate: 'Live', unformattedDate: today},
+  {
+    formattedDate: dateFormat.format(getDay(3, false)),
+    unformattedDate: getDay(3, false)
+  },
+  {
+    formattedDate: dateFormat.format(getDay(2, false)),
+    unformattedDate: getDay(2, false)
+  },
+  {
+    formattedDate: dateFormat.format(getDay(1, false)),
+    unformattedDate: getDay(1, false)
+  },
+  {formattedDate: dateFormat.format(getDay(0, false)), unformattedDate: today},
+  {
+    formattedDate: dateFormat.format(getDay(1, true)),
+    unformattedDate: getDay(1, true)
+  },
+  {
+    formattedDate: dateFormat.format(getDay(2, true)),
+    unformattedDate: getDay(2, true)
+  },
+  {
+    formattedDate: dateFormat.format(getDay(3, true)),
+    unformattedDate: getDay(3, true)
+  },
+  {formattedDate: 'Date', unformattedDate: today},
 ];
+
+// final List<String> dayh = [
+//   'Live',
+//   dateFormat.format(getDay(3, false)),
+//   dateFormat.format(getDay(2, false)),
+//   dateFormat.format(getDay(1, false)),
+//   dateFormat.format(getDay(0, false)),
+//   dateFormat.format(getDay(1, true)),
+//   dateFormat.format(getDay(2, true)),
+//   dateFormat.format(getDay(3, true)),
+//   'Date'
+// ];

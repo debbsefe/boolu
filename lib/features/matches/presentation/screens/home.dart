@@ -148,11 +148,18 @@ class BuildNavBar extends StatelessWidget {
           children: dayh.map((e) {
             return InkWell(
               onTap: () {
-                print('e $e');
+                print('unformattedDate ${e[unformattedDate]}');
+                final String date = e[unformattedDate].toString().split(" ")[0];
+                final weatherBloc =
+                    BlocProvider.of<MatchesBloc>(context, listen: false);
+
+                weatherBloc.add(GetMatches(dateFrom: date, dateTo: date));
               },
-              child: Text(e,
+              child: Text(e[formattedDate],
                   style: CustomTheme.navbarText1.copyWith(
-                    color: e == 'Live' ? CustomTheme.lightGreen : Colors.white,
+                    color: e[formattedDate] == 'Live'
+                        ? CustomTheme.lightGreen
+                        : Colors.white,
                     fontSize: width * font8,
                   )),
             );
