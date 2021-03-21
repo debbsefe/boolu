@@ -41,8 +41,6 @@ class MatchRemoteDataSourceImpl implements MatchRemoteDataSource {
     );
     var body = json.decode(response.body);
     var type = body.runtimeType.toString();
-    print('type ${type}');
-    print('decoded ${body}');
     if (response.statusCode == 200 && type == 'List<dynamic>') {
       final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
       return parsed

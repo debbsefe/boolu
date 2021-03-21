@@ -106,13 +106,13 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Colors.white.withOpacity(0.85),
-                        fontSize: 8,
+                        fontSize: 10,
                       )),
                   Height(5),
                   Text('${dateFormat.format(getDay(0, false))}',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.85),
-                        fontSize: 6,
+                        fontSize: 8,
                       )),
                 ],
               ),

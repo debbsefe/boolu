@@ -108,7 +108,7 @@ class BuildNavBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Expanded(
-                flex: 1, child: Image.asset('assets/images/live_icon.png')),
+                flex: 1, child: Image.asset('assets/images/live_icon.png', scale: 2.5)),
             Expanded(
               flex: 8,
               child: Row(
@@ -139,7 +139,7 @@ class BuildNavBar extends StatelessWidget {
                     DateTime value = context.read<CalendarCubit>().state.value;
                     context.read<CalendarCubit>().showCalendar(value);
                   },
-                  child: Image.asset('assets/images/calendar_icon.png')),
+                  child: Image.asset('assets/images/calendar_icon.png', scale: 2.5)),
             )
           ],
         ),
