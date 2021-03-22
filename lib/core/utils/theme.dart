@@ -17,6 +17,8 @@ class CustomTheme {
   static const Color buttonColor = Color(0xFFD6A127);
   static const Color lightGreen = Color(0xff6EFB00);
   static const Color purple = Color(0xff030933);
+  static const Color darkOrange = Color(0xffA69232);
+  static const Color black24 = Color(0xff00020F);
 
   static const TextStyle navbarText1 = TextStyle(
     color: white,
@@ -43,5 +45,15 @@ class CustomTheme {
   static const TextStyle scoreText = TextStyle(
     color: accent1,
     fontWeight: FontWeight.w700,
+  );
+  static const TextStyle title = TextStyle(
+    color: white,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle subtitleItalic = TextStyle(
+    color: darkOrange,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.italic,
   );
 }

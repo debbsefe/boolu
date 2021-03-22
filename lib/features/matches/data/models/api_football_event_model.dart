@@ -40,6 +40,11 @@ class ApiFootballEventModel extends MatchesModel {
     this.substitutions,
     this.lineup,
     this.statistics,
+    this.goalScorers,
+    this.card,
+    this.subs,
+    this.stats,
+    this.lineups,
   }) : super(
             competitionName: leagueName,
             competitionLogo: leagueLogo,
@@ -50,7 +55,12 @@ class ApiFootballEventModel extends MatchesModel {
             homeLogo: teamHomeBadge,
             awayLogo: teamAwayBadge,
             venue: matchStadium,
-            matchTime: matchTime);
+            matchTime: matchTime,
+            goalScorers: goalScorers,
+            card: card,
+            stats: stats,
+            subs: subs,
+            lineups: lineups);
 
   String matchId;
   String countryId;
@@ -84,6 +94,11 @@ class ApiFootballEventModel extends MatchesModel {
   String teamAwayBadge;
   String leagueLogo;
   String countryLogo;
+  List goalScorers;
+  List card;
+  dynamic subs;
+  dynamic lineups;
+  List stats;
   List<Goalscorer> goalscorer;
   List<CardElement> cards;
   Substitutions substitutions;
@@ -92,7 +107,12 @@ class ApiFootballEventModel extends MatchesModel {
 
   factory ApiFootballEventModel.fromJson(Map<String, dynamic> json) =>
       ApiFootballEventModel(
+        goalScorers: json["goalscorer"],
+        card: json["cards"],
+        subs: json["substitutions"],
+        stats: json["statistics"],
         matchId: json["match_id"],
+        lineups: json["lineup"],
         countryId: json["country_id"],
         countryName: json["country_name"],
         leagueId: json["league_id"],
