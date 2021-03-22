@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class MatchesModel extends Equatable {
+class SingleMatchModel extends Equatable {
   final String competitionName;
   final String competitionLogo;
   final String home;
@@ -12,25 +12,18 @@ class MatchesModel extends Equatable {
   final String awayLogo;
   final String venue;
   final String matchTime;
-  final List goalScorers, card, stats;
-  final dynamic subs, lineups;
 
-  MatchesModel({
-    this.goalScorers,
-    this.card,
-    this.stats,
-    this.subs,
-    this.lineups,
-    this.competitionLogo,
-    this.homeLogo,
-    this.awayLogo,
-    this.homescore,
-    this.awayscore,
-    this.competitionName,
-    this.home,
-    this.away,
-    this.venue,
-    this.matchTime,
+  SingleMatchModel({
+    @required this.competitionLogo,
+    @required this.homeLogo,
+    @required this.awayLogo,
+    @required this.homescore,
+    @required this.awayscore,
+    @required this.competitionName,
+    @required this.home,
+    @required this.away,
+    @required this.venue,
+    @required this.matchTime,
   });
 
   @override

@@ -27,6 +27,7 @@ dependencies:
   intl: ^0.16.1
   mockito: any
   provider: ^4.1.2
+  recase: ^3.0.1
   share: ^0.6.4+3
   shared_preferences: any
   sizer: ^1.1.8
