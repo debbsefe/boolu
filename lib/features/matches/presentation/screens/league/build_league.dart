@@ -100,10 +100,16 @@ class _BuildLeagueState extends State<BuildLeague> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        setState(() {
-                          isVisible = !isVisible;
-                          index = entry.key;
-                        });
+                        if (index == entry.key || index == null) {
+                          setState(() {
+                            isVisible = !isVisible;
+                            index = entry.key;
+                          });
+                        } else {
+                          setState(() {
+                            index = entry.key;
+                          });
+                        }
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(vertical: 10.0.h),

@@ -12,10 +12,14 @@ class MatchesModel extends Equatable {
   final String awayLogo;
   final String venue;
   final String matchTime;
+  final String homeLineUp;
+  final String awayLineUp;
   final List goalScorers, card, stats;
   final dynamic subs, lineups;
 
   MatchesModel({
+    this.awayLineUp,
+    this.homeLineUp,
     this.goalScorers,
     this.card,
     this.stats,
@@ -35,6 +39,8 @@ class MatchesModel extends Equatable {
 
   @override
   List<Object> get props => [
+        homeLineUp,
+        awayLineUp,
         competitionName,
         home,
         away,

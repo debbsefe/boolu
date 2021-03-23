@@ -21,6 +21,7 @@ class Home extends StatelessWidget {
           padding: EdgeInsets.all(2.0.h),
           child: SingleChildScrollView(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 BlocBuilder<CalendarCubit, CalendarState>(
                   builder: (context, state) {
@@ -108,7 +109,8 @@ class BuildNavBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Expanded(
-                flex: 1, child: Image.asset('assets/images/live_icon.png', scale: 2.5)),
+                flex: 1,
+                child: Image.asset('assets/images/live_icon.png', scale: 2.5)),
             Expanded(
               flex: 8,
               child: Row(
@@ -139,7 +141,8 @@ class BuildNavBar extends StatelessWidget {
                     DateTime value = context.read<CalendarCubit>().state.value;
                     context.read<CalendarCubit>().showCalendar(value);
                   },
-                  child: Image.asset('assets/images/calendar_icon.png', scale: 2.5)),
+                  child: Image.asset('assets/images/calendar_icon.png',
+                      scale: 2.5)),
             )
           ],
         ),

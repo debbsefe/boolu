@@ -16,8 +16,10 @@ class MatchDetails extends StatelessWidget {
     SizeConfig().init(context);
 
     return Container(
-      height: SizeConfig.screenHeight * 0.6,
+      height: 800,
       margin: EdgeInsets.symmetric(vertical: 1.0.h),
+      //padding: EdgeInsets.symmetric(vertical: 1.0.h),
+
       decoration: BoxDecoration(border: Border.all(color: CustomTheme.grey3)),
       child: tabs(context, matchesModel),
     );
@@ -32,9 +34,9 @@ DefaultTabController tabs(BuildContext context, MatchesModel matchesModel) {
           children: [
             TabBarView(
               children: <Widget>[
-                SingleChildScrollView(child: MatchOverView(matchesModel)),
-                MatchStats(),
-                MatchLineup(),
+                MatchOverView(matchesModel),
+                MatchStats(matchesModel),
+                MatchLineup(matchesModel),
               ],
             ),
           ],

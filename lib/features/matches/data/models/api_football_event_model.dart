@@ -60,7 +60,9 @@ class ApiFootballEventModel extends MatchesModel {
             card: card,
             stats: stats,
             subs: subs,
-            lineups: lineups);
+            lineups: lineups,
+            awayLineUp: matchAwayteamSystem,
+            homeLineUp: matchHometeamSystem);
 
   String matchId;
   String countryId;
