@@ -22,7 +22,6 @@ class MatchOverView extends StatelessWidget {
     newList.sort((a, b) => a['time'].compareTo(b['time']));
     return Column(
       children: newList.map((e) {
-        print('newList ${newList}');
         String homeScorer = e['home_scorer'];
         String homeAssist = e['home_assist'];
         String awayAssist = e['away_assist'];

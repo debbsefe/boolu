@@ -56,4 +56,10 @@ class CustomTheme {
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.italic,
   );
+
+  static const TextStyle italic = TextStyle(
+    color: grey3,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.italic,
+  );
 }
