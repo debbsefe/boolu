@@ -15,14 +15,10 @@ class MatchLineup extends StatelessWidget {
     double width = SizeConfig.blockSizeHorizontal;
     String homeLineUp = matchesModel.homeLineUp;
     String awayLineUp = matchesModel.awayLineUp;
-    dynamic lineup = matchesModel.lineups;
-    List homesubs = lineup['home']['substitutes'];
-    List awaysubs = lineup['away']['substitutes'];
-    String homecoach = lineup['home']['coach'][0]['lineup_player'];
-    String awaycoach = lineup['away']['coach'][0]['lineup_player'];
-
-    print('subs ${homecoach}');
-
+    List<Subtitutes> homesubs = matchesModel.homeSubtitutes;
+    List<Subtitutes> awaysubs = matchesModel.awaySubtitutes;
+    String homecoach = matchesModel.homecoach[0].lineupPlayer;
+    String awaycoach = matchesModel.awaycoach[0].lineupPlayer;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -99,14 +95,14 @@ class MatchLineup extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  e['lineup_number'],
+                                  e.lineupNumber,
                                   style: CustomTheme.navbarText1.copyWith(
                                       fontSize: width * font10,
                                       color: Colors.white.withOpacity(0.85)),
                                 ),
                                 Width(20),
                                 Text(
-                                  e['lineup_player'],
+                                  e.lineupPlayer,
                                   style: CustomTheme.navbarText1.copyWith(
                                       fontSize: width * font10,
                                       color: Colors.white.withOpacity(0.85)),
@@ -157,14 +153,14 @@ class MatchLineup extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  e['lineup_number'],
+                                  e.lineupNumber,
                                   style: CustomTheme.navbarText1.copyWith(
                                       fontSize: width * font10,
                                       color: Colors.white.withOpacity(0.85)),
                                 ),
                                 Width(10),
                                 Text(
-                                  e['lineup_player'],
+                                  e.lineupPlayer,
                                   style: CustomTheme.navbarText1.copyWith(
                                       fontSize: width * font10,
                                       color: Colors.white.withOpacity(0.85)),

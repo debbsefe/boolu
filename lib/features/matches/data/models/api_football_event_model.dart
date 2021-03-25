@@ -40,10 +40,13 @@ class ApiFootballEventModel extends MatchesModel {
     this.substitutions,
     this.lineup,
     this.statistics,
-    this.homeScorers,
+    this.goalScorers,
     this.stats,
-    this.lineups,
+    this.homeSubtitutes,
+    this.awaySubtitutes,
     this.cardElement,
+    this.homecoach,
+    this.awaycoach,
   }) : super(
             competitionName: leagueName,
             competitionLogo: leagueLogo,
@@ -56,11 +59,14 @@ class ApiFootballEventModel extends MatchesModel {
             venue: matchStadium,
             matchTime: matchTime,
             stats: stats,
-            lineups: lineups,
+            homeSubtitutes: homeSubtitutes,
+            awaySubtitutes: awaySubtitutes,
             awayLineUp: matchAwayteamSystem,
             homeLineUp: matchHometeamSystem,
-            homescorer: homeScorers,
-            cardelement: cardElement);
+            goalScorers: goalScorers,
+            cardelement: cardElement,
+            homecoach: homecoach,
+            awaycoach: awaycoach);
 
   String matchId;
   String countryId;
@@ -94,15 +100,17 @@ class ApiFootballEventModel extends MatchesModel {
   String teamAwayBadge;
   String leagueLogo;
   String countryLogo;
-  List<GoalScorers> homeScorers;
+  List<GoalScorers> goalScorers;
   List<Cards> cardElement;
-  Map<String, dynamic> lineups;
+  List<Subtitutes> homeSubtitutes;
+  List<Subtitutes> awaySubtitutes;
   List<Statistics> stats;
   List<Goalscorer> goalscorer;
   List<CardElement> cards;
   Substitutions substitutions;
   Lineup lineup;
   List<Statistic> statistics;
+  List<Subtitutes> homecoach, awaycoach;
 
   factory ApiFootballEventModel.fromJson(Map<String, dynamic> json) =>
       ApiFootballEventModel(
@@ -112,7 +120,7 @@ class ApiFootballEventModel extends MatchesModel {
               card: x["card"],
               awayFault: x["away_fault"],
             ))),
-        homeScorers:
+        goalScorers:
             List<GoalScorers>.from(json["goalscorer"].map((x) => GoalScorers(
                   time: x['time'],
                   homeScorer: x["home_scorer"],
@@ -127,7 +135,26 @@ class ApiFootballEventModel extends MatchesModel {
               away: x["away"],
             ))),
         matchId: json["match_id"],
-        lineups: json["lineup"],
+        homeSubtitutes: List<Subtitutes>.from(
+            json["lineup"]['home']['substitutes'].map((x) => Subtitutes(
+                  lineupPlayer: x["lineup_player"],
+                  lineupNumber: x["lineup_number"],
+                ))),
+        awaySubtitutes: List<Subtitutes>.from(
+            json["lineup"]['away']['substitutes'].map((x) => Subtitutes(
+                  lineupPlayer: x["lineup_player"],
+                  lineupNumber: x["lineup_number"],
+                ))),
+        homecoach: List<Subtitutes>.from(
+            json["lineup"]['home']['coach'].map((x) => Subtitutes(
+                  lineupPlayer: x["lineup_player"],
+                  lineupNumber: x["lineup_number"],
+                ))),
+        awaycoach: List<Subtitutes>.from(
+            json["lineup"]['away']['coach'].map((x) => Subtitutes(
+                  lineupPlayer: x["lineup_player"],
+                  lineupNumber: x["lineup_number"],
+                ))),
         countryId: json["country_id"],
         countryName: json["country_name"],
         leagueId: json["league_id"],

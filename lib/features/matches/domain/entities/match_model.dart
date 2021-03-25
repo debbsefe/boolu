@@ -2,30 +2,33 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 class MatchesModel extends Equatable {
-  final String competitionName;
-  final String competitionLogo;
-  final String home;
-  final String away;
-  final String homescore;
-  final String awayscore;
-  final String homeLogo;
-  final String awayLogo;
-  final String venue;
-  final String matchTime;
-  final String homeLineUp;
-  final String awayLineUp;
-  final List<GoalScorers> homescorer;
+  final String competitionName,
+      competitionLogo,
+      home,
+      away,
+      homescore,
+      awayscore,
+      homeLogo,
+      awayLogo,
+      venue,
+      matchTime,
+      homeLineUp,
+      awayLineUp;
+  final List<GoalScorers> goalScorers;
   final List<Cards> cardelement;
   final List<Statistics> stats;
-  final Map<String, dynamic> lineups;
+  final List<Subtitutes> homeSubtitutes, awaySubtitutes, homecoach, awaycoach;
 
   MatchesModel({
+    this.homecoach,
+    this.awaycoach,
     this.cardelement,
     this.awayLineUp,
-    this.homescorer,
+    this.goalScorers,
     this.homeLineUp,
     this.stats,
-    this.lineups,
+    this.homeSubtitutes,
+    this.awaySubtitutes,
     this.competitionLogo,
     this.homeLogo,
     this.awayLogo,
@@ -56,15 +59,15 @@ class MatchesModel extends Equatable {
 }
 
 class GoalScorers {
-  final String homeScorer;
-  final String homeAssist;
-  final String awayAssist;
-  final String awayScorer;
-  final String scores;
-  final String time;
-  final String homeFault;
-  final String card;
-  final String awayFault;
+  final String homeScorer,
+      homeAssist,
+      awayAssist,
+      awayScorer,
+      scores,
+      time,
+      homeFault,
+      card,
+      awayFault;
 
   GoalScorers({
     this.homeScorer,
@@ -88,10 +91,7 @@ class Cards extends GoalScorers {
   }) : super(
             homeFault: homeFault, time: time, card: card, awayFault: awayFault);
 
-  final String time;
-  final String homeFault;
-  final String card;
-  final String awayFault;
+  final String time, homeFault, card, awayFault;
 }
 
 class Statistics {
@@ -101,7 +101,14 @@ class Statistics {
     @required this.away,
   });
 
-  final String type;
-  final String home;
-  final String away;
+  final String type, home, away;
+}
+
+class Subtitutes {
+  Subtitutes({
+    @required this.lineupPlayer,
+    @required this.lineupNumber,
+  });
+
+  final String lineupPlayer, lineupNumber;
 }

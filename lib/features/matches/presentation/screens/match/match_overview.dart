@@ -16,7 +16,7 @@ class MatchOverView extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     double width = SizeConfig.blockSizeHorizontal;
-    List<GoalScorers> goals = matchesModel.homescorer;
+    List<GoalScorers> goals = matchesModel.goalScorers;
     List<Cards> cards = matchesModel.cardelement;
     List newList = [...goals, ...cards];
     newList.sort((a, b) => a.time.compareTo(b.time));
