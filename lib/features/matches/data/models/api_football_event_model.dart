@@ -40,6 +40,13 @@ class ApiFootballEventModel extends MatchesModel {
     this.substitutions,
     this.lineup,
     this.statistics,
+    this.goalScorers,
+    this.stats,
+    this.homeSubtitutes,
+    this.awaySubtitutes,
+    this.cardElement,
+    this.homecoach,
+    this.awaycoach,
   }) : super(
             competitionName: leagueName,
             competitionLogo: leagueLogo,
@@ -50,7 +57,16 @@ class ApiFootballEventModel extends MatchesModel {
             homeLogo: teamHomeBadge,
             awayLogo: teamAwayBadge,
             venue: matchStadium,
-            matchTime: matchTime);
+            matchTime: matchTime,
+            stats: stats,
+            homeSubtitutes: homeSubtitutes,
+            awaySubtitutes: awaySubtitutes,
+            awayLineUp: matchAwayteamSystem,
+            homeLineUp: matchHometeamSystem,
+            goalScorers: goalScorers,
+            cardelement: cardElement,
+            homecoach: homecoach,
+            awaycoach: awaycoach);
 
   String matchId;
   String countryId;
@@ -84,15 +100,61 @@ class ApiFootballEventModel extends MatchesModel {
   String teamAwayBadge;
   String leagueLogo;
   String countryLogo;
+  List<GoalScorers> goalScorers;
+  List<Cards> cardElement;
+  List<Subtitutes> homeSubtitutes;
+  List<Subtitutes> awaySubtitutes;
+  List<Statistics> stats;
   List<Goalscorer> goalscorer;
   List<CardElement> cards;
   Substitutions substitutions;
   Lineup lineup;
   List<Statistic> statistics;
+  List<Subtitutes> homecoach, awaycoach;
 
   factory ApiFootballEventModel.fromJson(Map<String, dynamic> json) =>
       ApiFootballEventModel(
+        cardElement: List<Cards>.from(json["cards"].map((x) => Cards(
+              time: x['time'],
+              homeFault: x["home_fault"],
+              card: x["card"],
+              awayFault: x["away_fault"],
+            ))),
+        goalScorers:
+            List<GoalScorers>.from(json["goalscorer"].map((x) => GoalScorers(
+                  time: x['time'],
+                  homeScorer: x["home_scorer"],
+                  homeAssist: x["home_assist"],
+                  scores: x["score"],
+                  awayScorer: x["away_scorer"],
+                  awayAssist: x["away_assist"],
+                ))),
+        stats: List<Statistics>.from(json["statistics"].map((x) => Statistics(
+              type: x["type"],
+              home: x["home"],
+              away: x["away"],
+            ))),
         matchId: json["match_id"],
+        homeSubtitutes: List<Subtitutes>.from(
+            json["lineup"]['home']['substitutes'].map((x) => Subtitutes(
+                  lineupPlayer: x["lineup_player"],
+                  lineupNumber: x["lineup_number"],
+                ))),
+        awaySubtitutes: List<Subtitutes>.from(
+            json["lineup"]['away']['substitutes'].map((x) => Subtitutes(
+                  lineupPlayer: x["lineup_player"],
+                  lineupNumber: x["lineup_number"],
+                ))),
+        homecoach: List<Subtitutes>.from(
+            json["lineup"]['home']['coach'].map((x) => Subtitutes(
+                  lineupPlayer: x["lineup_player"],
+                  lineupNumber: x["lineup_number"],
+                ))),
+        awaycoach: List<Subtitutes>.from(
+            json["lineup"]['away']['coach'].map((x) => Subtitutes(
+                  lineupPlayer: x["lineup_player"],
+                  lineupNumber: x["lineup_number"],
+                ))),
         countryId: json["country_id"],
         countryName: json["country_name"],
         leagueId: json["league_id"],

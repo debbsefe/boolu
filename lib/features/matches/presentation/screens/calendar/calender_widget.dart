@@ -1,5 +1,6 @@
 import 'package:Boolu/core/utils/size_config.dart';
 import 'package:Boolu/core/utils/theme.dart';
+import 'package:Boolu/features/matches/presentation/bloc/matches/bloc/matches_bloc.dart';
 import 'package:Boolu/features/matches/presentation/cubits/calendar/cubit/calendar_cubit.dart';
 import 'package:Boolu/features/matches/presentation/widgets/date_parser.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,7 +48,11 @@ class _CalendarWidgetState extends State<CalendarWidget> {
   void initState() {
     super.initState();
     final date = DateTime.now();
+
+    ///read value of selectedTime once
     DateTime selectedTime = context.read<CalendarCubit>().state.value;
+
+    ///if selectedtime is null, use currenttime
     _currentDateTime = selectedTime != null
         ? DateTime(selectedTime.year, selectedTime.month)
         : DateTime(date.year, date.month);
@@ -101,13 +106,13 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Colors.white.withOpacity(0.85),
-                        fontSize: 8,
+                        fontSize: 10,
                       )),
                   Height(5),
                   Text('${dateFormat.format(getDay(0, false))}',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.85),
-                        fontSize: 6,
+                        fontSize: 8,
                       )),
                 ],
               ),
@@ -230,6 +235,15 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
           setState(() {
             _selectedDateTime = calendarDate.date;
+
+            ///save selectedDateTime to calendarcubit
+            context.read<CalendarCubit>().showCalendar(_selectedDateTime);
+
+            ///format the selectedDateTime and call weatherbloc to update the matches
+            final String date = _selectedDateTime.toString().split(" ")[0];
+            final matchBloc =
+                BlocProvider.of<MatchesBloc>(context, listen: false);
+            matchBloc.add(GetMatches(dateFrom: date, dateTo: date));
           });
         }
       },

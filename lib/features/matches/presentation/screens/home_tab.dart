@@ -72,10 +72,12 @@ class _HomeTabState extends State<HomeTab> {
     return BottomNavigationBarItem(
       icon: Image.asset(
         icon,
+        height: 20,
         semanticLabel: semanticLabel,
       ),
       activeIcon: Image.asset(
         icon,
+        height: 20,
         semanticLabel: semanticLabel,
       ),
       label: label,
