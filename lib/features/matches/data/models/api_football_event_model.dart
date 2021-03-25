@@ -40,11 +40,10 @@ class ApiFootballEventModel extends MatchesModel {
     this.substitutions,
     this.lineup,
     this.statistics,
-    this.goalScorers,
-    this.card,
-    this.subs,
+    this.homeScorers,
     this.stats,
     this.lineups,
+    this.cardElement,
   }) : super(
             competitionName: leagueName,
             competitionLogo: leagueLogo,
@@ -56,13 +55,12 @@ class ApiFootballEventModel extends MatchesModel {
             awayLogo: teamAwayBadge,
             venue: matchStadium,
             matchTime: matchTime,
-            goalScorers: goalScorers,
-            card: card,
             stats: stats,
-            subs: subs,
             lineups: lineups,
             awayLineUp: matchAwayteamSystem,
-            homeLineUp: matchHometeamSystem);
+            homeLineUp: matchHometeamSystem,
+            homescorer: homeScorers,
+            cardelement: cardElement);
 
   String matchId;
   String countryId;
@@ -96,11 +94,10 @@ class ApiFootballEventModel extends MatchesModel {
   String teamAwayBadge;
   String leagueLogo;
   String countryLogo;
-  List goalScorers;
-  List card;
-  dynamic subs;
-  dynamic lineups;
-  List stats;
+  List<GoalScorers> homeScorers;
+  List<Cards> cardElement;
+  Map<String, dynamic> lineups;
+  List<Statistics> stats;
   List<Goalscorer> goalscorer;
   List<CardElement> cards;
   Substitutions substitutions;
@@ -109,10 +106,26 @@ class ApiFootballEventModel extends MatchesModel {
 
   factory ApiFootballEventModel.fromJson(Map<String, dynamic> json) =>
       ApiFootballEventModel(
-        goalScorers: json["goalscorer"],
-        card: json["cards"],
-        subs: json["substitutions"],
-        stats: json["statistics"],
+        cardElement: List<Cards>.from(json["cards"].map((x) => Cards(
+              time: x['time'],
+              homeFault: x["home_fault"],
+              card: x["card"],
+              awayFault: x["away_fault"],
+            ))),
+        homeScorers:
+            List<GoalScorers>.from(json["goalscorer"].map((x) => GoalScorers(
+                  time: x['time'],
+                  homeScorer: x["home_scorer"],
+                  homeAssist: x["home_assist"],
+                  scores: x["score"],
+                  awayScorer: x["away_scorer"],
+                  awayAssist: x["away_assist"],
+                ))),
+        stats: List<Statistics>.from(json["statistics"].map((x) => Statistics(
+              type: x["type"],
+              home: x["home"],
+              away: x["away"],
+            ))),
         matchId: json["match_id"],
         lineups: json["lineup"],
         countryId: json["country_id"],

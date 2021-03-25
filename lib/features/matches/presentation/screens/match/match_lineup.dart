@@ -3,8 +3,6 @@ import 'package:Boolu/features/matches/domain/entities/match_model.dart';
 import 'package:flutter/material.dart';
 import 'package:Boolu/core/utils/font_constants.dart';
 import 'package:Boolu/core/utils/size_config.dart';
-import 'package:recase/recase.dart';
-import 'package:sizer/sizer.dart';
 
 class MatchLineup extends StatelessWidget {
   final MatchesModel matchesModel;

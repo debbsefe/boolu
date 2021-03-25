@@ -14,16 +14,17 @@ class MatchesModel extends Equatable {
   final String matchTime;
   final String homeLineUp;
   final String awayLineUp;
-  final List goalScorers, card, stats;
-  final dynamic subs, lineups;
+  final List<GoalScorers> homescorer;
+  final List<Cards> cardelement;
+  final List<Statistics> stats;
+  final Map<String, dynamic> lineups;
 
   MatchesModel({
+    this.cardelement,
     this.awayLineUp,
+    this.homescorer,
     this.homeLineUp,
-    this.goalScorers,
-    this.card,
     this.stats,
-    this.subs,
     this.lineups,
     this.competitionLogo,
     this.homeLogo,
@@ -52,4 +53,55 @@ class MatchesModel extends Equatable {
         venue,
         matchTime,
       ];
+}
+
+class GoalScorers {
+  final String homeScorer;
+  final String homeAssist;
+  final String awayAssist;
+  final String awayScorer;
+  final String scores;
+  final String time;
+  final String homeFault;
+  final String card;
+  final String awayFault;
+
+  GoalScorers({
+    this.homeScorer,
+    this.homeAssist,
+    this.awayAssist,
+    this.awayScorer,
+    this.scores,
+    this.time,
+    this.homeFault,
+    this.card,
+    this.awayFault,
+  });
+}
+
+class Cards extends GoalScorers {
+  Cards({
+    this.time,
+    this.homeFault,
+    this.card,
+    this.awayFault,
+  }) : super(
+            homeFault: homeFault, time: time, card: card, awayFault: awayFault);
+
+  final String time;
+  final String homeFault;
+  final String card;
+  final String awayFault;
+}
+
+class Statistics {
+  Statistics({
+    @required this.type,
+    @required this.home,
+    @required this.away,
+  });
+
+  final String type;
+  final String home;
+  final String away;
 }

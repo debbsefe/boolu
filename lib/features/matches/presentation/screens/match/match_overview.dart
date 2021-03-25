@@ -16,21 +16,22 @@ class MatchOverView extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     double width = SizeConfig.blockSizeHorizontal;
-    List goals = matchesModel.goalScorers;
-    List cards = matchesModel.card;
-    var newList = [...goals, ...cards];
-    newList.sort((a, b) => a['time'].compareTo(b['time']));
+    List<GoalScorers> goals = matchesModel.homescorer;
+    List<Cards> cards = matchesModel.cardelement;
+    List newList = [...goals, ...cards];
+    newList.sort((a, b) => a.time.compareTo(b.time));
     return Column(
       children: newList.map((e) {
-        String homeScorer = e['home_scorer'];
-        String homeAssist = e['home_assist'];
-        String awayAssist = e['away_assist'];
-        String awayScorer = e['away_scorer'];
-        String scores = e['score'];
-        String time = e['time'];
-        String homeFault = e['home_fault'];
-        String awayFault = e['away_fault'];
-        String card = e['card'];
+        String homeScorer = e.homeScorer;
+        String homeAssist = e.homeAssist;
+        String awayAssist = e.awayAssist;
+        String awayScorer = e.awayScorer;
+        String scores = e.scores;
+        String time = e.time;
+        String homeFault = e.homeFault;
+
+        String awayFault = e.awayFault;
+        String card = e.card;
 
         return Container(
           padding: const EdgeInsets.symmetric(vertical: 20),
