@@ -94,8 +94,8 @@ class _BuildLeagueState extends State<BuildLeague> {
             Height(3.0.h),
             Column(
               children: matches.asMap().entries.map((entry) {
-                // print('goalScorers ${e.lineups}');
                 var e = entry.value;
+                print('goalScorers ${e.stats.map((e) => e.home)}');
                 return Column(
                   children: [
                     GestureDetector(
