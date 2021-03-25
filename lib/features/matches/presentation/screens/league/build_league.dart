@@ -7,7 +7,6 @@ import 'package:Boolu/features/matches/presentation/screens/match/match_details.
 import 'package:Boolu/features/matches/presentation/widgets/date_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuildLeague extends StatefulWidget {
@@ -95,7 +94,6 @@ class _BuildLeagueState extends State<BuildLeague> {
             Column(
               children: matches.asMap().entries.map((entry) {
                 var e = entry.value;
-                print('goalScorers ${e.stats.map((e) => e.home)}');
                 return Column(
                   children: [
                     GestureDetector(
