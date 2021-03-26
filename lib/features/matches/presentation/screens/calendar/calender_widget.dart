@@ -1,7 +1,7 @@
 import 'package:Boolu/core/utils/size_config.dart';
 import 'package:Boolu/core/utils/theme.dart';
 import 'package:Boolu/features/matches/presentation/bloc/matches/bloc/matches_bloc.dart';
-import 'package:Boolu/features/matches/presentation/cubits/calendar/cubit/calendar_cubit.dart';
+import 'package:Boolu/features/matches/presentation/cubits/calendar/calendar_cubit.dart';
 import 'package:Boolu/features/matches/presentation/widgets/date_parser.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'calendar.dart';
@@ -99,6 +99,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
             GestureDetector(
               onTap: () {
                 context.read<CalendarCubit>().hideCalendar();
+                final matchBloc =
+                    BlocProvider.of<MatchesBloc>(context, listen: false);
+                matchBloc.add(GetMatches(
+                    dateFrom: todayWithoutTime, dateTo: todayWithoutTime));
               },
               child: Column(
                 children: [
