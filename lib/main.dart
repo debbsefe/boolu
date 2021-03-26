@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'features/matches/presentation/bloc/matches/bloc/matches_bloc.dart';
-import 'features/matches/presentation/cubits/calendar/cubit/calendar_cubit.dart';
+import 'features/matches/presentation/cubits/calendar/calendar_cubit.dart';
+import 'features/matches/presentation/cubits/navbarTextColor/navbar_text_color_cubit.dart';
 import 'features/matches/presentation/screens/home_tab.dart';
 import 'package:get/get.dart';
 import 'injection_container.dart' as di;
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
               ),
               BlocProvider(
                 create: (BuildContext context) => CalendarCubit(),
+              ),
+              BlocProvider(
+                create: (BuildContext context) => NavbarTextColorCubit(),
               ),
             ],
             child: GetMaterialApp(

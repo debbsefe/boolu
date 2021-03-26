@@ -2,7 +2,7 @@ import 'package:Boolu/core/utils/font_constants.dart';
 import 'package:Boolu/core/utils/size_config.dart';
 import 'package:Boolu/core/utils/theme.dart';
 import 'package:Boolu/features/matches/presentation/bloc/matches/bloc/matches_bloc.dart';
-import 'package:Boolu/features/matches/presentation/cubits/calendar/cubit/calendar_cubit.dart';
+import 'package:Boolu/features/matches/presentation/cubits/calendar/calendar_cubit.dart';
 import 'package:Boolu/features/matches/presentation/screens/match/match_details.dart';
 import 'package:Boolu/features/matches/presentation/widgets/date_parser.dart';
 import 'package:flutter/material.dart';
@@ -40,11 +40,14 @@ class _BuildLeagueState extends State<BuildLeague> {
       if (state is MatchesLoading) {
         return CircularProgressIndicator();
       } else if (state is MatchesError) {
-        return Text(state.message,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: width * font12,
-            ));
+        return Container(
+          margin: const EdgeInsets.only(top: 50),
+          child: Text(state.message,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: width * font12,
+              )),
+        );
       } else if (state is MatchesLoaded) {
         final matches = state.matchesModel;
         DateTime selectedTime = context.watch<CalendarCubit>().state.value;
