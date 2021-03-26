@@ -10,7 +10,7 @@ import 'package:equatable/equatable.dart';
 part 'matches_event.dart';
 part 'matches_state.dart';
 
-const String SERVER_FAILURE_MESSAGE = 'No match found for this day';
+const String SERVER_FAILURE_MESSAGE = 'No matches available for this day';
 const String CACHE_FAILURE_MESSAGE =
     'No internet connection detected or no match found';
 

@@ -58,7 +58,7 @@ class MatchLineup extends StatelessWidget {
                 style: CustomTheme.bodyText.copyWith(fontSize: width * font14)),
           ],
         ),
-        Height(30),
+        Height(50),
         Text(
           'substitute players'.toUpperCase(),
           style: CustomTheme.navbarText1.copyWith(
@@ -91,21 +91,30 @@ class MatchLineup extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: homesubs.map((e) {
                           return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 6.0),
+                            padding: const EdgeInsets.only(
+                                top: 6.0, bottom: 6.0, left: 6.0),
                             child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  e.lineupNumber,
-                                  style: CustomTheme.navbarText1.copyWith(
-                                      fontSize: width * font10,
-                                      color: Colors.white.withOpacity(0.85)),
+                                Expanded(
+                                  flex: 1,
+                                  child: Text(
+                                    e.lineupNumber,
+                                    textAlign: TextAlign.start,
+                                    style: CustomTheme.navbarText1.copyWith(
+                                        fontSize: width * font10,
+                                        color: Colors.white.withOpacity(0.85)),
+                                  ),
                                 ),
-                                Width(20),
-                                Text(
-                                  e.lineupPlayer,
-                                  style: CustomTheme.navbarText1.copyWith(
-                                      fontSize: width * font10,
-                                      color: Colors.white.withOpacity(0.85)),
+                                Expanded(
+                                  flex: 3,
+                                  child: Text(
+                                    e.lineupPlayer,
+                                    textAlign: TextAlign.start,
+                                    style: CustomTheme.navbarText1.copyWith(
+                                        fontSize: width * font10,
+                                        color: Colors.white.withOpacity(0.85)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -115,7 +124,12 @@ class MatchLineup extends StatelessWidget {
                       Height(20),
                       Row(
                         children: [
-                          Width(20),
+                          Text(
+                            'Coach: ',
+                            style: CustomTheme.scoreText.copyWith(
+                              fontSize: width * font10,
+                            ),
+                          ),
                           Text(
                             homecoach,
                             style: CustomTheme.navbarText1.copyWith(
@@ -152,18 +166,24 @@ class MatchLineup extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 6.0),
                             child: Row(
                               children: [
-                                Text(
-                                  e.lineupNumber,
-                                  style: CustomTheme.navbarText1.copyWith(
-                                      fontSize: width * font10,
-                                      color: Colors.white.withOpacity(0.85)),
+                                Expanded(
+                                  flex: 1,
+                                  child: Text(
+                                    e.lineupNumber,
+                                    style: CustomTheme.navbarText1.copyWith(
+                                        fontSize: width * font10,
+                                        color: Colors.white.withOpacity(0.85)),
+                                  ),
                                 ),
-                                Width(10),
-                                Text(
-                                  e.lineupPlayer,
-                                  style: CustomTheme.navbarText1.copyWith(
-                                      fontSize: width * font10,
-                                      color: Colors.white.withOpacity(0.85)),
+                                //Width(10),
+                                Expanded(
+                                  flex: 3,
+                                  child: Text(
+                                    e.lineupPlayer,
+                                    style: CustomTheme.navbarText1.copyWith(
+                                        fontSize: width * font10,
+                                        color: Colors.white.withOpacity(0.85)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -173,7 +193,12 @@ class MatchLineup extends StatelessWidget {
                       Height(20),
                       Row(
                         children: [
-                          Width(20),
+                          Text(
+                            'Coach: ',
+                            style: CustomTheme.scoreText.copyWith(
+                              fontSize: width * font10,
+                            ),
+                          ),
                           Text(
                             awaycoach,
                             style: CustomTheme.navbarText1.copyWith(

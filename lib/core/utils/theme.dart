@@ -25,8 +25,17 @@ class CustomTheme {
     fontWeight: FontWeight.w500,
   );
 
+  static const TextStyle navbarText11 = TextStyle(
+    color: accent1,
+    fontWeight: FontWeight.w500,
+  );
+
   static const TextStyle navbarText2 = TextStyle(
     color: white,
+    fontWeight: FontWeight.w300,
+  );
+  static const TextStyle navbarText21 = TextStyle(
+    color: accent1,
     fontWeight: FontWeight.w300,
   );
   static const TextStyle bodyText = TextStyle(
