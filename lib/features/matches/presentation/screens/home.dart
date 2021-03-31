@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
                   },
                 ),
                 Height(3.0.h),
-                BuildLeague(),
+                Flexible(child: BuildLeague()),
               ],
             ),
           ),

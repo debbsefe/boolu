@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'explore.dart';
 import 'home.dart';
+import 'settings/settings.dart';
 
 class HomeTab extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -22,7 +23,7 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _children = [Home(), Explore(), Explore(), Explore()];
+    final List<Widget> _children = [Home(), Explore(), Explore(), Settings()];
     SizeConfig().init(context);
     final height = SizeConfig.safeBlockVertical;
 

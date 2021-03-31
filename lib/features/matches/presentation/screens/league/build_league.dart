@@ -55,6 +55,7 @@ class _BuildLeagueState extends State<BuildLeague> {
             ? dateFormat.format(today)
             : dateFormat.format(selectedTime);
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             matches.isEmpty
                 ? Container()
@@ -95,12 +96,15 @@ class _BuildLeagueState extends State<BuildLeague> {
                   ),
             Height(3.0.h),
             Column(
+              mainAxisSize: MainAxisSize.min,
               children: matches.asMap().entries.map((entry) {
                 var e = entry.value;
                 return Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     GestureDetector(
                       onTap: () {
+                        print('tap');
                         if (index == entry.key || index == null) {
                           setState(() {
                             isVisible = !isVisible;
