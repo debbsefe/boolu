@@ -17,9 +17,16 @@ class MatchesModel extends Equatable {
   final List<GoalScorers> goalScorers;
   final List<Cards> cardelement;
   final List<Statistics> stats;
-  final List<Subtitutes> homeSubtitutes, awaySubtitutes, homecoach, awaycoach;
+  final List<Subtitutes> homeSubtitutes,
+      awaySubtitutes,
+      homecoach,
+      awaycoach,
+      lineupHome,
+      lineupAway;
 
   MatchesModel({
+    this.lineupAway,
+    this.lineupHome,
     this.homecoach,
     this.awaycoach,
     this.cardelement,
@@ -108,7 +115,8 @@ class Subtitutes {
   Subtitutes({
     @required this.lineupPlayer,
     @required this.lineupNumber,
+    this.lineupPosition,
   });
 
-  final String lineupPlayer, lineupNumber;
+  final String lineupPlayer, lineupNumber, lineupPosition;
 }
