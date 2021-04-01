@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'explore.dart';
 import 'home.dart';
+import 'settings/dynamic_links.dart';
 import 'settings/settings.dart';
 
 class HomeTab extends StatefulWidget {
@@ -19,6 +20,12 @@ class _HomeTabState extends State<HomeTab> {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    DynamicLinks().fetchLinkData();
   }
 
   @override
