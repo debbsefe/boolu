@@ -1,9 +1,10 @@
+import 'package:Boolu/core/utils/strings.dart';
 import 'package:Boolu/core/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:Boolu/core/utils/font_constants.dart';
 import 'package:Boolu/core/utils/size_config.dart';
 import 'package:get/get.dart';
-
+import 'package:share/share.dart';
 import 'about_boolu.dart';
 
 class Settings extends StatelessWidget {
@@ -29,6 +30,9 @@ class Settings extends StatelessWidget {
           ),
           Height(20),
           CustomListTile(
+            onTap: () {
+              share();
+            },
             icon: Icons.share,
             title: 'Tell a friend',
           ),
@@ -47,6 +51,14 @@ class Settings extends StatelessWidget {
       ),
     );
   }
+}
+
+void share() async {
+  final String text =
+      "'Click the link below to enjoy football highlights and livescores \nhttps://boolu.page.link/XktS";
+  final String subject = boolu;
+
+  Share.share(text, subject: subject);
 }
 
 class CustomListTile extends StatelessWidget {
