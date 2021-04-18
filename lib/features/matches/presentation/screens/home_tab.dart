@@ -1,5 +1,6 @@
 import 'package:Boolu/core/utils/size_config.dart';
 import 'package:Boolu/core/utils/theme.dart';
+import 'package:Boolu/features/highlights/presentation/screens/highlight.dart';
 import 'package:flutter/material.dart';
 
 import 'explore.dart';
@@ -30,7 +31,7 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _children = [Home(), Explore(), Explore(), Settings()];
+    final List<Widget> _children = [Home(), Explore(), HighLight(), Settings()];
     SizeConfig().init(context);
     final height = SizeConfig.safeBlockVertical;
 

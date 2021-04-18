@@ -2,8 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
 class HighLightModel extends Equatable {
-  final String thumbnail, team1, team2;
-  final DateTime date;
+  final String thumbnail, team1, team2, date;
   final List<VideoUrl> videourl;
 
   HighLightModel(
