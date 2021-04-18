@@ -21,7 +21,7 @@ void main() {
     HighLightModel(
       videourl: [VideoUrl(url: '1')],
       thumbnail: 'test',
-      date: DateTime.now(),
+      date: '1',
       team1: '1',
       team2: '2',
     )

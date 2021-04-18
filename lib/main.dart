@@ -10,6 +10,7 @@ import 'features/matches/presentation/cubits/navbarTextColor/navbar_text_color_c
 import 'features/matches/presentation/screens/home_tab.dart';
 import 'package:get/get.dart';
 import 'injection_container.dart' as di;
+import 'package:Boolu/features/highlights/presentation/blocs/highlight/highlight_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
             providers: [
               BlocProvider(
                 create: (BuildContext context) => di.sl<MatchesBloc>(),
+              ),
+               BlocProvider(
+                create: (BuildContext context) =>  di.sl<HighlightBloc>(),
               ),
               BlocProvider(
                 create: (BuildContext context) => CalendarCubit(),

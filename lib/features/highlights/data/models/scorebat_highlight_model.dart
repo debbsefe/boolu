@@ -6,12 +6,14 @@ class ScorebatHighlightModel extends HighLightModel {
   String embed;
   String url;
   String thumbnail;
-  DateTime date;
+  String date;
   Side1 side1;
   Side1 side2;
   Competition competition;
   List<Videos> videos;
   List<VideoUrl> videourl;
+  String team1;
+  String team2;
 
   ScorebatHighlightModel(
       {this.title,
@@ -23,7 +25,9 @@ class ScorebatHighlightModel extends HighLightModel {
       this.side2,
       this.competition,
       this.videourl,
-      this.videos})
+      this.videos,
+      this.team1,
+      this.team2})
       : super(
             date: date,
             team1: side1.name,
@@ -36,11 +40,14 @@ class ScorebatHighlightModel extends HighLightModel {
       videourl = List<VideoUrl>.from(
           json["videos"].map((x) => VideoUrl(url: x['embed'])));
     }
+    team1 = json['side1']['name'];
+    team2 = json['side2']['name'];
+
     title = json['title'];
     embed = json['embed'];
     url = json['url'];
     thumbnail = json['thumbnail'];
-    date = DateTime.parse(json["date"]);
+    date = json["date"];
     side1 = json['side1'] != null ? new Side1.fromJson(json['side1']) : null;
     side2 = json['side2'] != null ? new Side1.fromJson(json['side2']) : null;
     competition = json['competition'] != null
