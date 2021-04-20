@@ -33,7 +33,8 @@ class ScorebatHighlightModel extends HighLightModel {
             team1: side1.name,
             team2: side2.name,
             thumbnail: thumbnail,
-            videourl: videourl);
+            videourl: videourl,
+            embedUrl: embed);
 
   ScorebatHighlightModel.fromJson(Map<String, dynamic> json) {
     if (json['videos'] != null) {
