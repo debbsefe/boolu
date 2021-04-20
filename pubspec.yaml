@@ -32,6 +32,7 @@ dependencies:
   share: ^0.6.4+3
   shared_preferences: any
   sizer: ^1.1.8
+  webview_flutter: any
 
 dev_dependencies:
   flutter_test:

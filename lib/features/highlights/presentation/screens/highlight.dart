@@ -6,8 +6,11 @@ import 'package:Boolu/features/highlights/presentation/blocs/highlight/highlight
 import 'package:Boolu/features/matches/presentation/widgets/date_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
+
+import 'highlight_video.dart';
 
 class HighLight extends StatefulWidget {
   @override
@@ -54,17 +57,24 @@ class _HighLightState extends State<HighLight> {
               return SingleChildScrollView(
                 child: Column(
                   children: highlight.map((e) {
+                    print('embed ${e.embedUrl}');
+
                     DateTime parseDate = DateTime.parse(e.date);
                     String dateFormat =
                         DateFormat('d MM yyyy').format(parseDate);
-                    return BuildWidget(
-                      date: dateFormat,
-                      image: e.thumbnail,
-                      title: e.team1 == null
-                          ? ''
-                          : e.team2 == null
-                              ? ''
-                              : e.team1 + ' vs ' + e.team2,
+                    return GestureDetector(
+                      onTap: () {
+                        Get.to(() => HighlightVideo(e.embedUrl));
+                      },
+                      child: BuildWidget(
+                        date: dateFormat,
+                        image: e.thumbnail,
+                        title: e.team1 == null
+                            ? ''
+                            : e.team2 == null
+                                ? ''
+                                : e.team1 + ' vs ' + e.team2,
+                      ),
                     );
                   }).toList(),
                 ),
