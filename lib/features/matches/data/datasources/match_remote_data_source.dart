@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
 abstract class MatchRemoteDataSource {
-  /// Calls the http://numbersapi.com/{number} endpoint.
+  /// Calls the endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
   Future<List<ApiFootballEventModel>> getLeagueMatches(
