@@ -46,6 +46,7 @@ class ScorebatHighlightModel extends HighLightModel {
 
     title = json['title'];
     embed = json['embed'];
+
     url = json['url'];
     thumbnail = json['thumbnail'];
     date = json["date"];

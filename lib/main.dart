@@ -4,7 +4,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
-import 'features/matches/presentation/bloc/matches/bloc/matches_bloc.dart';
+import 'features/matches/presentation/bloc/matches/matches_bloc.dart';
 import 'features/matches/presentation/cubits/calendar/calendar_cubit.dart';
 import 'features/matches/presentation/cubits/navbarTextColor/navbar_text_color_cubit.dart';
 import 'features/matches/presentation/screens/home_tab.dart';

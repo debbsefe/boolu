@@ -30,10 +30,12 @@ class HighLightRemoteDataSourceImpl implements HighLightRemoteDataSource {
     );
     if (response.statusCode == 200) {
       final parsed = json.decode(response.body).cast<Map<String, dynamic>>();
-      return parsed
+      List<ScorebatHighlightModel> model = parsed
           .map<ScorebatHighlightModel>(
               (json) => ScorebatHighlightModel.fromJson(json))
           .toList();
+
+      return model;
     } else {
       throw ServerException();
     }

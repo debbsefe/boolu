@@ -4,7 +4,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:async';
 
 class HighlightVideo extends StatefulWidget {
-  final String video;
+  final List<VideoUrl> video;
   HighlightVideo(this.video);
   @override
   _HighlightVideoState createState() => _HighlightVideoState();
@@ -30,7 +30,7 @@ class _HighlightVideoState extends State<HighlightVideo> {
   }
 
   getVideoUrl() {
-    var item = widget.video;
+    var item = widget.video[0].url;
     var test = item.split("src=")[1].split("frameborder")[0];
     String url = test.substring(1, test.length - 2);
     print('url $url stop');

@@ -3,7 +3,6 @@ import 'package:Boolu/core/utils/size_config.dart';
 import 'package:Boolu/core/utils/theme.dart';
 import 'package:Boolu/features/highlights/domain/entities/highlight_model.dart';
 import 'package:Boolu/features/highlights/presentation/blocs/highlight/highlight_bloc.dart';
-import 'package:Boolu/features/matches/presentation/widgets/date_parser.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -64,7 +63,7 @@ class _HighLightState extends State<HighLight> {
                         DateFormat('d MM yyyy').format(parseDate);
                     return GestureDetector(
                       onTap: () {
-                        Get.to(() => HighlightVideo(e.embedUrl));
+                        Get.to(() => HighlightVideo(e.videourl));
                       },
                       child: BuildWidget(
                         date: dateFormat,

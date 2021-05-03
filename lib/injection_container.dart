@@ -15,7 +15,7 @@ import 'features/matches/data/datasources/match_remote_data_source.dart';
 import 'features/matches/data/repositories/match_repository_impl.dart';
 import 'features/matches/domain/repositories/match_repositories.dart';
 import 'features/matches/domain/usecases/get_matches.dart';
-import 'features/matches/presentation/bloc/matches/bloc/matches_bloc.dart';
+import 'features/matches/presentation/bloc/matches/matches_bloc.dart';
 
 final sl = GetIt.instance;
 
