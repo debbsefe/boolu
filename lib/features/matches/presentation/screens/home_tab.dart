@@ -1,9 +1,12 @@
 import 'package:Boolu/core/utils/size_config.dart';
 import 'package:Boolu/core/utils/theme.dart';
+import 'package:Boolu/features/highlights/presentation/screens/highlight.dart';
 import 'package:flutter/material.dart';
 
 import 'explore.dart';
 import 'home.dart';
+import 'settings/dynamic_links.dart';
+import 'settings/settings.dart';
 
 class HomeTab extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -21,8 +24,14 @@ class _HomeTabState extends State<HomeTab> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    DynamicLinks().fetchLinkData();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final List<Widget> _children = [Home(), Explore(), Explore(), Explore()];
+    final List<Widget> _children = [Home(), Explore(), HighLight(), Settings()];
     SizeConfig().init(context);
     final height = SizeConfig.safeBlockVertical;
 

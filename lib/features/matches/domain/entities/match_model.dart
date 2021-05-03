@@ -17,9 +17,16 @@ class MatchesModel extends Equatable {
   final List<GoalScorers> goalScorers;
   final List<Cards> cardelement;
   final List<Statistics> stats;
-  final List<Subtitutes> homeSubtitutes, awaySubtitutes, homecoach, awaycoach;
+  final List<Subtitutes> homeSubtitutes,
+      awaySubtitutes,
+      homecoach,
+      awaycoach,
+      lineupHome,
+      lineupAway;
 
   MatchesModel({
+    this.lineupAway,
+    this.lineupHome,
     this.homecoach,
     this.awaycoach,
     this.cardelement,
@@ -43,22 +50,31 @@ class MatchesModel extends Equatable {
 
   @override
   List<Object> get props => [
-        homeLineUp,
+        lineupAway,
+        lineupHome,
+        homecoach,
+        awaycoach,
+        cardelement,
         awayLineUp,
-        competitionName,
-        home,
-        away,
-        homescore,
-        awayscore,
+        goalScorers,
+        homeLineUp,
+        stats,
+        homeSubtitutes,
+        awaySubtitutes,
         competitionLogo,
         homeLogo,
         awayLogo,
+        homescore,
+        awayscore,
+        competitionName,
+        home,
+        away,
         venue,
         matchTime,
       ];
 }
 
-class GoalScorers {
+class GoalScorers extends Equatable {
   final String homeScorer,
       homeAssist,
       awayAssist,
@@ -80,6 +96,19 @@ class GoalScorers {
     this.card,
     this.awayFault,
   });
+
+  @override
+  List<Object> get props => [
+        homeScorer,
+        homeAssist,
+        awayAssist,
+        awayScorer,
+        scores,
+        time,
+        homeFault,
+        card,
+        awayFault,
+      ];
 }
 
 class Cards extends GoalScorers {
@@ -94,7 +123,7 @@ class Cards extends GoalScorers {
   final String time, homeFault, card, awayFault;
 }
 
-class Statistics {
+class Statistics extends Equatable {
   Statistics({
     @required this.type,
     @required this.home,
@@ -102,13 +131,28 @@ class Statistics {
   });
 
   final String type, home, away;
+
+  @override
+  List<Object> get props => [
+        type,
+        home,
+        away,
+      ];
 }
 
-class Subtitutes {
+class Subtitutes extends Equatable {
   Subtitutes({
     @required this.lineupPlayer,
     @required this.lineupNumber,
+    this.lineupPosition,
   });
 
-  final String lineupPlayer, lineupNumber;
+  final String lineupPlayer, lineupNumber, lineupPosition;
+
+  @override
+  List<Object> get props => [
+        lineupPlayer,
+        lineupNumber,
+        lineupPosition,
+      ];
 }

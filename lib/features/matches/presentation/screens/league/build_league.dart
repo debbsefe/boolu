@@ -1,7 +1,7 @@
 import 'package:Boolu/core/utils/font_constants.dart';
 import 'package:Boolu/core/utils/size_config.dart';
 import 'package:Boolu/core/utils/theme.dart';
-import 'package:Boolu/features/matches/presentation/bloc/matches/bloc/matches_bloc.dart';
+import 'package:Boolu/features/matches/presentation/bloc/matches/matches_bloc.dart';
 import 'package:Boolu/features/matches/presentation/cubits/calendar/calendar_cubit.dart';
 import 'package:Boolu/features/matches/presentation/screens/match/match_details.dart';
 import 'package:Boolu/features/matches/presentation/widgets/date_parser.dart';
@@ -55,6 +55,7 @@ class _BuildLeagueState extends State<BuildLeague> {
             ? dateFormat.format(today)
             : dateFormat.format(selectedTime);
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             matches.isEmpty
                 ? Container()
@@ -95,12 +96,15 @@ class _BuildLeagueState extends State<BuildLeague> {
                   ),
             Height(3.0.h),
             Column(
+              mainAxisSize: MainAxisSize.min,
               children: matches.asMap().entries.map((entry) {
                 var e = entry.value;
                 return Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     GestureDetector(
                       onTap: () {
+                        print('tap');
                         if (index == entry.key || index == null) {
                           setState(() {
                             isVisible = !isVisible;

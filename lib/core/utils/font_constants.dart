@@ -1,3 +1,4 @@
+const num font48 = 48 / 3.6;
 const num font24 = 24 / 3.6;
 const num font20 = 20 / 3.6;
 const num font18 = 18 / 3.6;

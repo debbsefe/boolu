@@ -19,6 +19,7 @@ class CustomTheme {
   static const Color purple = Color(0xff030933);
   static const Color darkOrange = Color(0xffA69232);
   static const Color black24 = Color(0xff00020F);
+  static const Color pitchGreen = Color.fromRGBO(85, 160, 31, 0.9);
 
   static const TextStyle navbarText1 = TextStyle(
     color: white,

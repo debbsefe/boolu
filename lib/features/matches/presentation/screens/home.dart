@@ -1,7 +1,7 @@
 import 'package:Boolu/core/utils/font_constants.dart';
 import 'package:Boolu/core/utils/size_config.dart';
 import 'package:Boolu/core/utils/theme.dart';
-import 'package:Boolu/features/matches/presentation/bloc/matches/bloc/matches_bloc.dart';
+import 'package:Boolu/features/matches/presentation/bloc/matches/matches_bloc.dart';
 import 'package:Boolu/features/matches/presentation/cubits/calendar/calendar_cubit.dart';
 import 'package:Boolu/features/matches/presentation/cubits/navbarTextColor/navbar_text_color_cubit.dart';
 import 'package:Boolu/features/matches/presentation/widgets/date_parser.dart';
@@ -35,7 +35,7 @@ class Home extends StatelessWidget {
                   },
                 ),
                 Height(3.0.h),
-                BuildLeague(),
+                Flexible(child: BuildLeague()),
               ],
             ),
           ),
