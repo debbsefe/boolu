@@ -20,6 +20,7 @@ void main() {
   final tHighLightModel = [
     HighLightModel(
       videourl: [VideoUrl(url: '1')],
+      embedUrl: '1',
       thumbnail: 'test',
       date: '1',
       team1: '1',
