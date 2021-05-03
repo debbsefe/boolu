@@ -59,7 +59,9 @@ class _BuildLeagueState extends State<BuildLeague> {
           children: [
             matches.isEmpty
                 ? Container()
-                : Container(
+                :
+                //header that shows the competition name
+                Container(
                     decoration: BoxDecoration(
                         border: Border.all(color: CustomTheme.grey3)),
                     child: Row(
@@ -95,6 +97,7 @@ class _BuildLeagueState extends State<BuildLeague> {
                     ),
                   ),
             Height(3.0.h),
+            //column that shows the matches under the competition
             Column(
               mainAxisSize: MainAxisSize.min,
               children: matches.asMap().entries.map((entry) {

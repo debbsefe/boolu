@@ -36,51 +36,70 @@ class _HighLightState extends State<HighLight> {
     double width = SizeConfig.blockSizeHorizontal;
     return SafeArea(
       child: Scaffold(
-        body: BlocConsumer<HighlightBloc, HighLightState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            if (state is HighLightLoading) {
-              return Center(child: CircularProgressIndicator());
-            } else if (state is HighLightError) {
+        body: RefreshIndicator(
+          onRefresh: () async {
+            final matchBloc =
+                BlocProvider.of<HighlightBloc>(context, listen: false);
+
+            await matchBloc.add(GetHighlight());
+          },
+          semanticsLabel: 'Slide down to refresh',
+          child: BlocConsumer<HighlightBloc, HighLightState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              if (state is HighLightLoading) {
+                return Center(child: CircularProgressIndicator());
+              } else if (state is HighLightError) {
+                return Container(
+                  margin: const EdgeInsets.only(top: 50),
+                  child: Text(state.message,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: width * font12,
+                      )),
+                );
+              } else if (state is HighLightLoaded) {
+                final List<HighLightModel> highlight = state.highLightModel;
+
+                return SingleChildScrollView(
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 30),
+                    child: Column(
+                      children: highlight.map((e) {
+                        print('embed ${e.embedUrl}');
+
+                        DateTime parseDate = DateTime.parse(e.date);
+                        String dateFormat =
+                            DateFormat('d MM yyyy').format(parseDate);
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(() => HighlightVideo(e.videourl));
+                          },
+                          child: BuildWidget(
+                            date: dateFormat,
+                            image: e.thumbnail,
+                            title: e.team1 == null
+                                ? ''
+                                : e.team2 == null
+                                    ? ''
+                                    : e.team1 + ' vs ' + e.team2,
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                );
+              }
               return Container(
                 margin: const EdgeInsets.only(top: 50),
-                child: Text(state.message,
+                child: Text('No highights available at the moment',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: width * font12,
                     )),
               );
-            } else if (state is HighLightLoaded) {
-              final List<HighLightModel> highlight = state.highLightModel;
-
-              return SingleChildScrollView(
-                child: Column(
-                  children: highlight.map((e) {
-                    print('embed ${e.embedUrl}');
-
-                    DateTime parseDate = DateTime.parse(e.date);
-                    String dateFormat =
-                        DateFormat('d MM yyyy').format(parseDate);
-                    return GestureDetector(
-                      onTap: () {
-                        Get.to(() => HighlightVideo(e.videourl));
-                      },
-                      child: BuildWidget(
-                        date: dateFormat,
-                        image: e.thumbnail,
-                        title: e.team1 == null
-                            ? ''
-                            : e.team2 == null
-                                ? ''
-                                : e.team1 + ' vs ' + e.team2,
-                      ),
-                    );
-                  }).toList(),
-                ),
-              );
-            }
-            return Container();
-          },
+            },
+          ),
         ),
       ),
     );
