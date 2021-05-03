@@ -14,30 +14,47 @@ class MatchStats extends StatelessWidget {
     SizeConfig().init(context);
     double width = SizeConfig.blockSizeHorizontal;
     List<Statistics> stats = matchesModel.stats;
-    return Container(
-      margin: const EdgeInsets.only(top: 20),
-      child: Column(
-        children: stats.map((e) {
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 40),
-            padding: const EdgeInsets.symmetric(vertical: 10),
+    return stats.isEmpty
+        ? Container(
+            margin: const EdgeInsets.only(top: 50),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(e.home ?? '',
-                    style: CustomTheme.bodyText
-                        .copyWith(fontSize: width * font14)),
-                Text(e.type ?? '',
-                    style:
-                        CustomTheme.italic.copyWith(fontSize: width * font12)),
-                Text(e.away ?? '',
-                    style: CustomTheme.bodyText
-                        .copyWith(fontSize: width * font14)),
+                Image.asset('assets/images/info.png', height: 20),
+                Width(20),
+                Text('Statistics will be posted before the match',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: width * font12,
+                    )),
               ],
             ),
+          )
+        : Container(
+            margin: const EdgeInsets.only(top: 20),
+            child: Column(
+              children: stats.map((e) {
+                return Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 40),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(e.home ?? '',
+                          style: CustomTheme.bodyText
+                              .copyWith(fontSize: width * font14)),
+                      Text(e.type ?? '',
+                          style: CustomTheme.italic
+                              .copyWith(fontSize: width * font12)),
+                      Text(e.away ?? '',
+                          style: CustomTheme.bodyText
+                              .copyWith(fontSize: width * font14)),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
           );
-        }).toList(),
-      ),
-    );
   }
 }

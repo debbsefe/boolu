@@ -1,6 +1,6 @@
-class ServerException  {}
+class ServerException implements Exception  {}
 
-class CacheException {}
+class CacheException implements Exception {}
 
 class FetchNetworkException {
   final String message;

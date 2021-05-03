@@ -3,7 +3,7 @@ import 'package:Boolu/core/utils/theme.dart';
 import 'package:Boolu/features/highlights/presentation/screens/highlight.dart';
 import 'package:flutter/material.dart';
 
-import 'explore.dart';
+// import 'explore.dart';
 import 'home.dart';
 import 'settings/dynamic_links.dart';
 import 'settings/settings.dart';
@@ -31,7 +31,7 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _children = [Home(), Explore(), HighLight(), Settings()];
+    final List<Widget> _children = [Home(), HighLight(), Settings()];
     SizeConfig().init(context);
     final height = SizeConfig.safeBlockVertical;
 
@@ -53,11 +53,11 @@ class _HomeTabState extends State<HomeTab> {
                   semanticLabel: 'This is the Score Page',
                   label: 'Scores',
                   height: height),
-              bottomNavigationBar(
-                  icon: 'assets/images/search_tab_icon.png',
-                  semanticLabel: 'This is the Search/Explore Leagues Page ',
-                  label: 'Explore Leagues',
-                  height: height),
+              // bottomNavigationBar(
+              //     icon: 'assets/images/search_tab_icon.png',
+              //     semanticLabel: 'This is the Search/Explore Leagues Page ',
+              //     label: 'Explore Leagues',
+              //     height: height),
               bottomNavigationBar(
                   icon: 'assets/images/highlight_tab_icon.png',
                   semanticLabel: 'This is the Video Highlights Page',
